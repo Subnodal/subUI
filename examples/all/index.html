@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!-- Serve this example in the main subUI directory -->
+<html>
+    <head>
+        <title>All subUI Elements</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+        <link rel="stylesheet" href="/style.css">
+    </head>
+    <body>
+        <nav>
+            <button><sui-icon sui-mirrorable>arrow_back</sui-icon></button>
+            <button><sui-icon sui-mirrorable>arrow_forward</sui-icon></button>
+            <sui-spacer></sui-spacer>
+            <input value="/home/user" sui-size="grow">
+            <sui-spacer></sui-spacer>
+            <button><sui-icon sui-mirrorable>close</sui-icon></button>
+        </nav>
+        <main>
+            <sui-panels>
+                <sui-content>
+                    <h1>Testing</h1>
+                    <p>Looking good, amirite?</p>
+                    <p>Lovin' that <span sui-mono>{<strong>subnodal</strong>}</span> style</p>
+                </sui-content>
+                <sui-panel>
+                    <nav><span>Example panel</span></nav>
+                    <aside>
+                        Hi!
+                    </aside>
+                </sui-panel>
+            </sui-panels>
+        </main>
+    </body>
+</html>

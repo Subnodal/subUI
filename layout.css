@@ -1,0 +1,121 @@
+/*
+    subUI
+
+    Copyright (C) Subnodal Technologies. All Rights Reserved.
+
+    https://subnodal.com
+    Licenced by the Subnodal Open-Source Licence, which can be found at LICENCE.md.
+*/
+
+html, body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    font-size: 16px;
+    background-color: var(--background);
+    color: var(--foreground);
+}
+
+main, aside {
+    flex-grow: 1;
+    padding: 1em;
+    overflow: auto;
+}
+
+nav {
+    display: flex;
+    height: 3em;
+    padding: 0.5em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    background-color: var(--panel);
+    color: var(--panelText);
+    overflow: hidden;
+}
+
+nav > * {
+    max-width: 100%;
+    margin: 0;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+nav > *[sui-size="grow"] {
+    flex-grow: 1;
+}
+
+nav > span {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+sui-spacer {
+    display: block;
+    height: 1em;
+}
+
+nav > sui-spacer {
+    display: inline-block;
+    width: 1em;
+    height: 100%;
+}
+
+sui-panels {
+    display: flex;
+    height: calc(100% + 1em);
+    margin: -0.5em;
+}
+
+sui-panels > * {
+    margin: 0.5em;
+}
+
+sui-panels > sui-panel {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background-color: var(--panel);
+    color: var(--panelText);
+    border-radius: 5px;
+    overflow: auto;
+}
+
+sui-panels > sui-panel nav {
+    background-color: var(--uiInput);
+    color: var(--uiInputText);
+}
+
+sui-panels > sui-panel main {
+    padding: 0.5em;
+}
+
+sui-panels > sui-content {
+    flex-grow: 1;
+}
+
+@media (min-width: 801px) {
+    [sui-screen="tablet"] {
+        display: none;
+    }
+}
+
+@media (min-width: 601px) {
+    [sui-screen="mobile"] {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    [sui-screen="desktop"] {
+        display: none;
+    }
+
+    [sui-screen="tablet"] {
+        display: none;
+    }
+}
