@@ -100,8 +100,8 @@ sui-panels > sui-content {
     flex-grow: 1;
 }
 
-@media (min-width: 801px) {
-    [sui-screen="tablet"] {
+@media (max-width: 800px) {
+    [sui-screen="wide"] {
         display: none;
     }
 }
@@ -114,10 +114,6 @@ sui-panels > sui-content {
 
 @media (max-width: 600px) {
     [sui-screen="desktop"] {
-        display: none;
-    }
-
-    [sui-screen="tablet"] {
         display: none;
     }
 }
