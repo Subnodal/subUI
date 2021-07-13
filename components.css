@@ -12,6 +12,26 @@
     box-sizing: border-box;
 }
 
+*[sui-stack="row"] {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 0;
+}
+
+*[sui-stack="column"] {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 0;
+}
+
+*[sui-stack="row"] > * + * {
+    margin-inline-start: 0.5em;
+}
+
+*[sui-stack="column"] > * + * {
+    margin-block-start: 0.5em;
+}
+
 *[sui-size="grow"] {
     flex-grow: 1;
 }
