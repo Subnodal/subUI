@@ -91,12 +91,12 @@ body[sui-target="web"] button:disabled {
     cursor: default!important;
 }
 
-button[sui-flat] {
+button[sui-style="flat"] {
     background-color: inherit;
     color: var(--uiFlatText);
 }
 
-button[sui-flat]:disabled {
+button[sui-style="flat"]:disabled {
     background-color: inherit;
     color: var(--coverText);
 }
