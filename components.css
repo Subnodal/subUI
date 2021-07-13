@@ -12,6 +12,10 @@
     box-sizing: border-box;
 }
 
+*[sui-size="grow"] {
+    flex-grow: 1;
+}
+
 body:not([sui-target="web"]) * {
     cursor: default;
     user-select: none;
@@ -38,19 +42,19 @@ h1, code, [sui-mono] {
 }
 
 h1 {
-    font-size: 1.5em;
+    font-size: 1.5rem;
 }
 
 h2 {
-    font-size: 1.2em;
+    font-size: 1.2rem;
 }
 
 h3 {
-    font-size: 1.1em;
+    font-size: 1.1rem;
 }
 
 p {
-    font-size: 1.1em;
+    font-size: 1.1rem;
 }
 
 pre, code {

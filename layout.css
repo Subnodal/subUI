@@ -25,6 +25,7 @@ main, aside {
 
 nav {
     display: flex;
+    flex-shrink: 0;
     height: 3em;
     padding: 0.5em;
     padding-left: 0.75em;
@@ -44,10 +45,6 @@ nav > * {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
-
-nav > *[sui-size="grow"] {
-    flex-grow: 1;
 }
 
 nav > span {
@@ -80,6 +77,7 @@ sui-panels > * {
 sui-panels > sui-panel {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
     width: 300px;
     background-color: var(--panel);
     color: var(--panelText);
@@ -98,6 +96,7 @@ sui-panels > sui-panel main {
 
 sui-panels > sui-content {
     flex-grow: 1;
+    overflow: auto;
 }
 
 @media (max-width: 800px) {
