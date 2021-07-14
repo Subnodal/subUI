@@ -35,6 +35,11 @@ nav {
     overflow: hidden;
 }
 
+nav + nav {
+    height: 2.5em;
+    padding-top: 0;
+}
+
 nav > * {
     flex-shrink: 0;
     max-width: 100%;
@@ -47,9 +52,40 @@ nav > * {
     white-space: nowrap;
 }
 
+nav > *[sui-style~="thick"] {
+    height: 100%;
+    margin-top: 0!important;
+    margin-bottom: 0!important;
+}
+
 nav > span {
     margin-top: 8px;
     margin-bottom: 8px;
+}
+
+nav img {
+    height: 100%;
+}
+
+nav button[sui-style~="flat"] {
+    color: inherit;
+}
+
+nav button[sui-style~="flat"]:first-child {
+    padding-inline-start: 0;
+}
+
+nav button[sui-style~="flat"]:last-child {
+    padding-inline-end: 0;
+}
+
+nav[sui-style~="thick"] {
+    height: 4em;
+}
+
+nav[sui-style~="thick"] button, nav[sui-style~="thick"] input, nav[sui-style~="thick"] select {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
 }
 
 sui-spacer {
@@ -100,18 +136,59 @@ sui-panels > sui-content {
 }
 
 @media (max-width: 800px) {
+    nav[sui-screen="wide"] + nav {
+        height: 3em;
+        padding-top: 0.5em;
+    }
+
+    nav[sui-screen="wide"] + nav[sui-style~="thick"] {
+        height: 5em;
+    }
+
     [sui-screen="wide"] {
         display: none;
     }
 }
 
 @media (min-width: 601px) {
+    nav[sui-screen="mobile"] + nav {
+        height: 3em;
+        padding-top: 0.5em;
+    }
+
+    nav[sui-screen="mobile"] + nav[sui-style~="thick"] {
+        height: 5em;
+    }
+
     [sui-screen="mobile"] {
         display: none;
     }
 }
 
 @media (max-width: 600px) {
+    nav[sui-screen="desktop"] + nav {
+        height: 3em;
+        padding-top: 0.5em;
+    }
+
+    nav[sui-screen="desktop"] + nav[sui-style~="thick"] {
+        height: 5em;
+    }
+
+    sui-panels {
+        flex-direction: column;
+    }
+
+    sui-panels > * {
+        flex-grow: 1;
+        flex-basis: 0;
+    }
+
+    sui-panels > sui-panel {
+        flex-shrink: 1;
+        width: calc(100% - 1em);
+    }
+
     [sui-screen="desktop"] {
         display: none;
     }

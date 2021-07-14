@@ -12,16 +12,17 @@
     box-sizing: border-box;
 }
 
-*[sui-stack="row"] {
+*[sui-stack] {
     display: flex;
-    flex-direction: row;
     flex-basis: 0;
 }
 
+*[sui-stack="row"] {
+    flex-direction: row;
+}
+
 *[sui-stack="column"] {
-    display: flex;
     flex-direction: column;
-    flex-basis: 0;
 }
 
 *[sui-stack="row"] > * + * {
@@ -115,14 +116,24 @@ body[sui-target="web"] button:disabled {
     cursor: default!important;
 }
 
-button[sui-style="flat"] {
+button[sui-style~="flat"] {
     background-color: inherit;
     color: var(--uiFlatText);
 }
 
-button[sui-style="flat"]:disabled {
+button[sui-style~="flat"]:disabled {
     background-color: inherit;
     color: var(--coverText);
+}
+
+button img {
+    height: 100%;
+    vertical-align: middle;
+}
+
+button:not([sui-style~="thick"]) sui-icon {
+    position: relative;
+    top: -0.1em;
 }
 
 a {
@@ -155,6 +166,7 @@ label span {
 }
 
 input, select {
+    height: fit-content;
     margin: 4px;
     padding: 8px;
     padding-left: 10px;
@@ -208,8 +220,6 @@ input[type="checkbox"]:focus::before {
 }
 
 sui-icon {
-    position: relative;
-    top: -0.1em;
     font-family: "Icons";
     font-weight: normal;
     font-style: normal;
