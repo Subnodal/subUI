@@ -1,0 +1,55 @@
+/*
+    subUI
+
+    Copyright (C) Subnodal Technologies. All Rights Reserved.
+
+    https://subnodal.com
+    Licenced by the Subnodal Open-Source Licence, which can be found at LICENCE.md.
+*/
+
+ul[sui-iconlist] {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+ul[sui-iconlist] li {
+    float: left;
+    width: 100px;
+    margin: 2px;
+    padding: calc(0.5em - 2px);
+    border-radius: 5px;
+    text-align: center;
+    transition: 0.1s background-color, 0.1s color;
+}
+
+ul[sui-iconlist] li[aria-selected="true"] {
+    background-color: var(--ui);
+    color: var(--uiText);
+}
+
+ul[sui-iconlist] li img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
+}
+
+ul[sui-iconlist] li input {
+    display: block;
+    width: calc(100% + 0.1em);
+    margin: -0.1em;
+    padding: 0.1em;
+    background-color: transparent;
+    color: inherit;
+    text-align: center;
+    cursor: default!important;
+    transition: 0.1s background-color, 0.1s color;
+}
+
+ul[sui-iconlist] li input:focus {
+    background-color: var(--uiInput);
+    color: var(--uiInputText);
+    cursor: text!important;
+}

@@ -8,5 +8,19 @@
 */
 
 namespace("com.subnodal.subui", function(exports) {
-    
+    var views = require("com.subnodal.subui.views");
+
+    exports.autoInit = true;
+
+    exports.cancelAutoInit = function() {
+        exports.autoInit = false;
+    };
+
+    exports.init = function() {
+        views.attachEvents();
+    };
+
+    window.addEventListener("load", function() {
+        exports.init();
+    });
 });

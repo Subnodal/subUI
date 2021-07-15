@@ -1,6 +1,8 @@
 {
     "identifier": "com.subnodal.subui",
     "modules": [
+        "elements.js",
+        "views.js",
         "subui.js"
     ]
 }

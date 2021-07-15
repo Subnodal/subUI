@@ -40,6 +40,8 @@
 body:not([sui-target="web"]) * {
     cursor: default;
     user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-drag: none;
 }
 
 *:focus {
