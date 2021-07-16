@@ -7,6 +7,7 @@
     Licenced by the Subnodal Open-Source Licence, which can be found at LICENCE.md.
 */
 
+// @namespace com.subnodal.subui
 namespace("com.subnodal.subui", function(exports) {
     var views = require("com.subnodal.subui.views");
 
@@ -37,3 +38,4 @@ namespace("com.subnodal.subui", function(exports) {
         exports.init();
     });
 });
+// @endnamespace

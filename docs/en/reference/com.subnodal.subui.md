@@ -1,4 +1,4 @@
-# (global)
+# com.subnodal.subui
 ## 🔠️ `autoInit`
 `var <Boolean>` · Whether subUI should automatically be initialised on document load.
 
