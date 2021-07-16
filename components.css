@@ -26,11 +26,11 @@
 }
 
 *[sui-stack="row"] > * + * {
-    margin-inline-start: 0.5em;
+    margin-inline-start: 0.5rem;
 }
 
 *[sui-stack="column"] > * + * {
-    margin-block-start: 0.5em;
+    margin-block-start: 0.5rem;
 }
 
 *[sui-size="grow"] {
@@ -90,15 +90,15 @@ span, strong, em {
 }
 
 button {
-    height: 2em;
-    padding: 0.5em;
-    padding-left: 0.6em;
-    padding-right: 0.6em;
+    height: 2rem;
+    padding: 0.5rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
     border-radius: 5px;
     border: none;
     background-color: var(--ui);
     color: var(--uiText);
-    font-size: 1em;
+    font-size: 1rem;
     transition: 0.5s background-color;
 }
 
@@ -135,7 +135,7 @@ button img {
 
 button:not([sui-style~="thick"]) sui-icon {
     position: relative;
-    top: -0.1em;
+    top: -0.1rem;
 }
 
 a {
@@ -244,9 +244,9 @@ sui-icon {
 sui-loader {
     display: block;
     position: relative;
-    width: calc(2em * 2);
-    height: calc(2em * 2);
-    margin: calc(0.5em + 5px) auto;
+    width: calc(2rem * 2);
+    height: calc(2rem * 2);
+    margin: calc(0.5rem + 5px) auto;
     color: var(--ui);
     border-radius: 50%;
     box-shadow: inset 0 0 0 10px;
@@ -262,13 +262,13 @@ sui-loader::before, sui-loader::after {
 
 sui-loader::before {
     left: -2.5px;
-    width: calc(2em + 5px);
-    height: calc(calc(2em * 2) + 5px);
+    width: calc(2rem + 5px);
+    height: calc(calc(2rem * 2) + 5px);
     background-color: inherit;
-    border-radius: calc(calc(2em * 2) + 5px) 0 0 calc(calc(2em * 2) + 5px);
-    -moz-transform-origin: calc(2em + 5px) calc(2em + 1px);
-    -webkit-transform-origin: calc(2em + 5px) calc(2em + 1px);
-    transform-origin: calc(2em + 5px) calc(2em + 1px);
+    border-radius: calc(calc(2rem * 2) + 5px) 0 0 calc(calc(2rem * 2) + 5px);
+    -moz-transform-origin: calc(2rem + 5px) calc(2rem + 1px);
+    -webkit-transform-origin: calc(2rem + 5px) calc(2rem + 1px);
+    transform-origin: calc(2rem + 5px) calc(2rem + 1px);
     -moz-transform: rotate(-180deg);
     -webkit-transform: rotate(-180deg);
     transform: rotate(-180deg);
@@ -278,14 +278,14 @@ sui-loader::before {
 }
 
 sui-loader::after {
-    left: calc(2em - 2.5px);
-    width: calc(2em + 5px);
-    height: calc(calc(2em * 2) + 5px);
+    left: calc(2rem - 2.5px);
+    width: calc(2rem + 5px);
+    height: calc(calc(2rem * 2) + 5px);
     background-color: inherit;
-    border-radius: 0 calc(calc(2em * 2) + 5px) calc(calc(2em * 2) + 5px) 0;
-    -moz-transform-origin: 0 calc(2em + 1px);
-    -webkit-transform-origin: 0 calc(2em + 1px);
-    transform-origin: 0 calc(2em + 1px);
+    border-radius: 0 calc(calc(2rem * 2) + 5px) calc(calc(2rem * 2) + 5px) 0;
+    -moz-transform-origin: 0 calc(2rem + 1px);
+    -webkit-transform-origin: 0 calc(2rem + 1px);
+    transform-origin: 0 calc(2rem + 1px);
     -moz-transform: rotate(-180deg);
     -webkit-transform: rotate(-180deg);
     transform: rotate(-180deg);

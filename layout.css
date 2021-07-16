@@ -19,24 +19,24 @@ html, body {
 
 main, aside {
     flex-grow: 1;
-    padding: 1em;
+    padding: 1rem;
     overflow: auto;
 }
 
 nav {
     display: flex;
     flex-shrink: 0;
-    height: 3em;
-    padding: 0.5em;
-    padding-left: 0.75em;
-    padding-right: 0.75em;
+    height: 3rem;
+    padding: 0.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
     background-color: var(--panel);
     color: var(--panelText);
     overflow: hidden;
 }
 
 nav + nav {
-    height: 2.5em;
+    height: 2.5rem;
     padding-top: 0;
 }
 
@@ -44,8 +44,8 @@ nav > * {
     flex-shrink: 0;
     max-width: 100%;
     margin: 0;
-    margin-left: 0.25em;
-    margin-right: 0.25em;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
     vertical-align: middle;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -80,34 +80,34 @@ nav button[sui-style~="flat"]:last-child {
 }
 
 nav[sui-style~="thick"] {
-    height: 4em;
+    height: 4rem;
 }
 
 nav[sui-style~="thick"] button, nav[sui-style~="thick"] input, nav[sui-style~="thick"] select {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 sui-spacer {
     display: block;
-    height: 1em;
+    height: 1rem;
 }
 
 nav > sui-spacer {
     display: inline-block;
     flex-shrink: 1;
-    width: 1em;
+    width: 1rem;
     height: 100%;
 }
 
 sui-panels {
     display: flex;
-    height: calc(100% + 1em);
-    margin: -0.5em;
+    height: calc(100% + 1rem);
+    margin: -0.5rem;
 }
 
 sui-panels > * {
-    margin: 0.5em;
+    margin: 0.5rem;
 }
 
 sui-panels > sui-panel {
@@ -127,29 +127,29 @@ sui-panels > sui-panel nav {
 }
 
 sui-panels > sui-panel main {
-    padding: 0.5em;
+    padding: 0.5rem;
 }
 
 sui-panels > sui-content {
     flex-grow: 1;
     margin: 0;
-    padding: 1em;
+    padding: 1rem;
     overflow: auto;
 }
 
 main > sui-panels {
-    margin: -1em;
-    height: calc(100% + 2em);
+    margin: -1rem;
+    height: calc(100% + 2rem);
 }
 
 @media (max-width: 800px) {
     nav[sui-screen="wide"] + nav {
-        height: 3em;
-        padding-top: 0.5em;
+        height: 3rem;
+        padding-top: 0.5rem;
     }
 
     nav[sui-screen="wide"] + nav[sui-style~="thick"] {
-        height: 5em;
+        height: 5rem;
     }
 
     [sui-screen="wide"] {
@@ -159,12 +159,12 @@ main > sui-panels {
 
 @media (min-width: 601px) {
     nav[sui-screen="mobile"] + nav {
-        height: 3em;
-        padding-top: 0.5em;
+        height: 3rem;
+        padding-top: 0.5rem;
     }
 
     nav[sui-screen="mobile"] + nav[sui-style~="thick"] {
-        height: 5em;
+        height: 5rem;
     }
 
     [sui-screen="mobile"] {
@@ -174,12 +174,12 @@ main > sui-panels {
 
 @media (max-width: 600px) {
     nav[sui-screen="desktop"] + nav {
-        height: 3em;
-        padding-top: 0.5em;
+        height: 3rem;
+        padding-top: 0.5rem;
     }
 
     nav[sui-screen="desktop"] + nav[sui-style~="thick"] {
-        height: 5em;
+        height: 5rem;
     }
 
     sui-panels {
@@ -193,7 +193,7 @@ main > sui-panels {
 
     sui-panels > sui-panel {
         flex-shrink: 1;
-        width: calc(100% - 1em);
+        width: calc(100% - 1rem);
     }
 
     [sui-screen="desktop"] {
