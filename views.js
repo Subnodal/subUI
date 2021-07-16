@@ -7,6 +7,7 @@
     Licenced by the Subnodal Open-Source Licence, which can be found at LICENCE.md.
 */
 
+// @namespace com.subnodal.subui.views
 namespace("com.subnodal.subui.views", function(exports) {
     var elements = require("com.subnodal.subui.events");
 
@@ -21,14 +22,48 @@ namespace("com.subnodal.subui.views", function(exports) {
         }
     }
 
+    /*
+        @name selectionModes
+        @type const <{*}>
+        Enum for icon list view item selection modes.
+    */
+    /*
+        @name selectionModes.SINGLE
+        @type const <*>
+        Select only one item at a time, deselecting previous items.
+    */
+    /*
+        @name selectionModes.LINEAR
+        @type const <*>
+        Select items in a non-visual row from the last-selected item,
+        deselecting items which lie outside of the row.
+    */
+    /*
+        @name selectionModes.ARBITRARY
+        @type const <*>
+        Toggle the selection of an item. The selection of other items will not
+        be affected.
+    */
     exports.selectionModes = {
         SINGLE: 0,
         LINEAR: 1,
         ARBITRARY: 2
     };
 
+    /*
+        @name selectionMode
+        @type var <selectionModes>
+        The current selection mode, as determined by the current keyboard state.
+    */
     exports.selectionMode = exports.selectionModes.SINGLE;
 
+    /*
+        @name selectListItem
+        Select an item from a list, and present the selection to the user,
+        triggering any event callbacks.
+        @param element <Node> The item node to select
+        @param selectionMode <selectionModes = selectionMode> The mode to use when deciding the outcome of selection
+    */
     exports.selectListItem = function(element, selectionMode = exports.selectionMode) {
         var list = elements.findAncestor(element, "ul[sui-iconlist]");
         var selectBefore = false;
@@ -97,6 +132,11 @@ namespace("com.subnodal.subui.views", function(exports) {
         });
     };
 
+    /*
+        @name selectListItem
+        Open an item from a list, triggering any event callbacks.
+        @param element <Node> The item node to open
+    */
     exports.openListItem = function(element) {
         listItemOpenEvents.forEach(function(elementEvent) {
             if (elementEvent.element == element) {
@@ -105,14 +145,34 @@ namespace("com.subnodal.subui.views", function(exports) {
         });
     };
 
+    /*
+        @name deselectList
+        Deselect all items from a list, triggering any event callbacks.
+        @param element <Node> The list node to deselect the items in
+    */
     exports.deselectList = function(element) {
-        var list = elements.findAncestor(element, "ul[sui-iconlist]");
-
-        list.querySelectorAll("li").forEach(function(item) {
+        element.querySelectorAll("li").forEach(function(item) {
             item.removeAttribute("aria-selected");
+        });
+
+        listSelectEvents.forEach(function(elementEvent) {
+            if (elementEvent.element == element) {
+                elementEvent.callback();
+            }
         });
     };
 
+    /*
+        @name generateListItem
+        Create a list item node which can be appended to a list.
+        @param name <String> The name to show in the list item
+        @param icon <String> The URL of the icon's image to show
+        @param subtext <String = ""> The subtext to show underneath the name
+        @param id <String | null = null> The internal element identifier to bind to the item
+        @param selected <Boolean = false> Whether to make the item appear selected
+        @param renamable <Boolean = true> Whether the item should be renamable by the user
+        @returns <Node> The generated list item
+    */
     exports.generateListItem = function(name, icon, subtext = "", id = null, selected = false, renamable = true) {
         var item = document.createElement("li");
 
@@ -156,34 +216,86 @@ namespace("com.subnodal.subui.views", function(exports) {
         return item;
     };
 
+    /*
+        @name getListItemName
+        Get the name of an item from a list.
+        @param element <Node> The item node to get the name of
+        @returns <String> The name of the list item
+    */
     exports.getListItemName = function(element) {
         return element.querySelector("input")?.value || element.querySelector("span")?.textContent || null;
     };
 
+    /*
+        @name getListItemID
+        Get the identifier of an item from a list.
+        @param element <Node> The item node to get the identifier of
+        @returns <String | null> The identifier of the list item
+    */
     exports.getListItemId = function(element) {
         return element.getAttribute("id") || null;
     };
 
+    /*
+        @name getSelectedListItems
+        Get the currently-selected list item nodes from a list.
+        @param element <Node> The list node to get the selected items of
+        @returns <[Node]> The currently-selected list items
+    */
     exports.getSelectedListItems = function(element) {
         return [...element.querySelectorAll("li[aria-selected='true']")];
     };
 
+    /*
+        @name getSelectedListItemIds
+        Get the identifiers of the currently-selected list items from a list.
+        @param element <Node> The list node to get the selected items of
+        @returns <[String | null]> The currently-selected list item identifiers
+    */
     exports.getSelectedListItemIds = function(element) {
         return exports.getSelectedListItems(element).map((item) => item.getAttribute("id"));
     };
 
+    /*
+        @name getSelectedListItemIds
+        Get the names of the currently-selected list items from a list.
+        @param element <Node> The list node to get the selected items of
+        @returns <[String | null]> The currently-selected list item names
+    */
     exports.getSelectedListItemNames = function(element) {
         return exports.getSelectedListItems(element).map((item) => exports.getListItemName(item));
     };
 
+    /*
+        @name attachListSelectEvent
+        Attach an event callback to a list which triggers whenever items in the
+        list are selected or deselected.
+        @param element <Node> The list node to attach the event to
+        @param callback <Function> The callback function to call when the event is triggered
+    */
     exports.attachListSelectEvent = function(element, callback) {
         listSelectEvents.push(new ElementEvent(element, callback));
     };
 
+    /*
+        @name attachListItemOpenEvent
+        Attach an event callback to a list item which fires whenever the item is
+        opened.
+        @param element <Node> The item node to attach the event to
+        @param callback <Function> The callback function to call when the event is triggered
+    */
     exports.attachListItemOpenEvent = function(element, callback) {
         listItemOpenEvents.push(new ElementEvent(element, callback));
     };
 
+    /*
+        @name attachEvents
+        Attach all events to all view elements.
+            ~~~~
+            This should only be called once. It is called when subUI is
+            initialised, which is usually when the document loads. All future
+            added views will automatically be subject to the attached events.
+    */
     exports.attachEvents = function() {
         window.addEventListener("keydown", function(event) {
             var list = elements.findAncestor(event.target, "ul[sui-iconlist]");
@@ -253,7 +365,7 @@ namespace("com.subnodal.subui.views", function(exports) {
             } else if (event.key == "Enter") {
                 exports.openListItem(element);
             } else if (event.key == "ArrowUp") {
-                var itemsAbove = elements.filterByCondition(list.querySelectorAll("li"), (item) => item.offsetTop < element.offsetTop && item.offsetLeft == element.offsetLeft);
+                var itemsAbove = [...list.querySelectorAll("li")].filter((item) => item.offsetTop < element.offsetTop && item.offsetLeft == element.offsetLeft);
 
                 if (itemsAbove.length == 0) {
                     return;
@@ -261,7 +373,7 @@ namespace("com.subnodal.subui.views", function(exports) {
 
                 exports.selectListItem(itemsAbove[itemsAbove.length - 1]);
             } else if (event.key == "ArrowDown") {
-                var itemsBelow = elements.filterByCondition(list.querySelectorAll("li"), (item) => item.offsetTop > element.offsetTop && item.offsetLeft == element.offsetLeft);
+                var itemsBelow = [...list.querySelectorAll("li")].filter((item) => item.offsetTop > element.offsetTop && item.offsetLeft == element.offsetLeft);
 
                 if (itemsBelow.length == 0) {
                     return;
@@ -299,3 +411,4 @@ namespace("com.subnodal.subui.views", function(exports) {
         });
     };
 });
+// @endnamespace
