@@ -20,7 +20,7 @@ namespace("com.subnodal.subui.views", function(exports) {
 
     exports.selectionMode = exports.selectionModes.SINGLE;
 
-    exports.selectListItem = function(element) {
+    exports.selectListItem = function(element, selectionMode = exports.selectionMode) {
         var list = elements.findAncestor(element, "ul[sui-iconlist]");
         var selectBefore = false;
         var selectBeforeFoundElement = false;
@@ -39,11 +39,11 @@ namespace("com.subnodal.subui.views", function(exports) {
             }
         });
 
-        if (exports.selectionMode == exports.selectionModes.SINGLE) {
+        if (selectionMode == exports.selectionModes.SINGLE) {
             list.querySelectorAll("li").forEach(function(item) {
                 item.removeAttribute("aria-selected");
             });
-        } else if (exports.selectionMode == exports.selectionModes.LINEAR) {
+        } else if (selectionMode == exports.selectionModes.LINEAR) {
             var items = list.querySelectorAll("li");
             var foundSelected = false;
             var foundElement = false;
@@ -73,7 +73,7 @@ namespace("com.subnodal.subui.views", function(exports) {
 
         lastSelectedElement = element;
 
-        if (exports.selectionMode == exports.selectionModes.ARBITRARY && element.getAttribute("aria-selected") == "true") {
+        if (selectionMode == exports.selectionModes.ARBITRARY && element.getAttribute("aria-selected") == "true") {
             element.removeAttribute("aria-selected");
         } else {
             element.setAttribute("aria-selected", true);
@@ -92,12 +92,32 @@ namespace("com.subnodal.subui.views", function(exports) {
 
     exports.attachEvents = function() {
         window.addEventListener("keydown", function(event) {
+            var list = elements.findAncestor(event.target, "ul[sui-iconlist]");
+
             if (event.key == "Shift") {
                 exports.selectionMode = exports.selectionModes.LINEAR;
             } else if (event.key == "Ctrl") {
                 exports.selectionMode = exports.selectionModes.ARBITRARY;
             } else {
                 exports.selectionMode = exports.selectionModes.SINGLE;
+            }
+
+            if (list == null || event.target.matches("input")) {
+                return;
+            }
+
+            if (event.key == "a" && event.ctrlKey) {
+                list.querySelectorAll("li").forEach(function(item) {
+                    exports.selectListItem(item, exports.selectionModes.LINEAR);
+
+                    event.target.focus();
+                });
+            }
+        });
+
+        window.addEventListener("click", function(event) {
+            if (event.target.matches("ul[sui-iconlist]")) {
+                exports.deselectList(event.target);
             }
         });
 
@@ -178,7 +198,7 @@ namespace("com.subnodal.subui.views", function(exports) {
                 renameField.focus();
                 renameField.select();
             } else if (event.key == "Escape") {
-                exports.deselectList();
+                exports.deselectList(list);
             }
         });
     };

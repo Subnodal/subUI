@@ -10,11 +10,12 @@
 ul[sui-iconlist] {
     margin: 0;
     padding: 0;
+    font-size: 0;
     list-style-type: none;
 }
 
 ul[sui-iconlist] li {
-    float: left;
+    display: inline-block;
     width: 100px;
     margin: 2px;
     padding: calc(0.5em - 2px);
@@ -29,8 +30,11 @@ ul[sui-iconlist] li[aria-selected="true"] {
 }
 
 ul[sui-iconlist] li img {
+    display: block;
     width: 64px;
     height: 64px;
+    margin: auto;
+    margin-block-end: 0.5em;
     object-fit: contain;
     -webkit-user-drag: none;
     -moz-user-drag: none;
@@ -44,12 +48,101 @@ ul[sui-iconlist] li input {
     background-color: transparent;
     color: inherit;
     text-align: center;
+    text-overflow: ellipsis;
     cursor: default!important;
-    transition: 0.1s background-color, 0.1s color;
+    transition: 0.2s background-color;
 }
 
 ul[sui-iconlist] li input:focus {
     background-color: var(--uiInput);
     color: var(--uiInputText);
     cursor: text!important;
+}
+
+ul[sui-iconlist] li span:not(:first-child) {
+    display: none;
+}
+
+ul[sui-iconlist][sui-style="compact"] li {
+    width: 20em;
+    text-align: start;
+    font-size: small;
+}
+
+ul[sui-iconlist][sui-style="compact"] li img {
+    float: left;
+    width: 32px;
+    height: 32px;
+    margin: 0.1em;
+    margin-inline-end: 0.5em;
+    vertical-align: middle;
+}
+
+[dir="rtl"] ul[sui-iconlist][sui-style="compact"] li img {
+    float: right;
+}
+
+ul[sui-iconlist][sui-style="compact"] li input {
+    width: calc(100% - 32px - 1em)!important;
+    margin-inline-start: calc(32px + 1em);
+    text-align: start;
+    vertical-align: middle;
+}
+
+ul[sui-iconlist][sui-style="compact"] li span {
+    display: block;
+    width: calc(100% - 32px - 1em)!important;
+    padding: 0.1em;
+    margin-inline-start: calc(32px + 1em);
+    text-align: start;
+}
+
+ul[sui-iconlist][sui-style="compact"] li:not([aria-selected="true"]) span:not(:first-child) {
+    color: var(--foregroundSubtle);
+}
+
+@media (max-width: 600px) {
+    ul[sui-iconlist] li {
+        display: block;
+        width: calc(100% - 0.2em)!important;
+        text-align: start;
+        font-size: small;
+    }
+    
+    ul[sui-iconlist] li img {
+        float: left;
+        width: 32px;
+        height: 32px;
+        margin: 0;
+        margin-inline-end: 0.5em;
+        vertical-align: middle;
+    }
+    
+    [dir="rtl"] ul[sui-iconlist] li img {
+        float: right;
+    }
+    
+    ul[sui-iconlist] li input {
+        width: calc(100% - 32px - 1em);
+        margin-inline-start: calc(32px + 1em);
+        text-align: start;
+        vertical-align: middle;
+        pointer-events: none;
+    }
+
+    ul[sui-iconlist] li input:focus {
+        pointer-events: all;
+    }
+    
+    ul[sui-iconlist] li span {
+        display: block;
+        width: calc(100% - 32px - 1em);
+        padding: 0.1em;
+        margin-inline-start: calc(32px + 1em);
+        text-align: start;
+    }
+    
+    ul[sui-iconlist] li:not([aria-selected="true"]) span:not(:first-child) {
+        color: var(--foregroundSubtle);
+    }
 }

@@ -72,11 +72,11 @@ nav button[sui-style~="flat"] {
 }
 
 nav button[sui-style~="flat"]:first-child {
-    padding-inline-start: 0;
+    margin-left: 0;
 }
 
 nav button[sui-style~="flat"]:last-child {
-    padding-inline-end: 0;
+    margin-right: 0;
 }
 
 nav[sui-style~="thick"] {
@@ -132,7 +132,14 @@ sui-panels > sui-panel main {
 
 sui-panels > sui-content {
     flex-grow: 1;
+    margin: 0;
+    padding: 1em;
     overflow: auto;
+}
+
+main > sui-panels {
+    margin: -1em;
+    height: calc(100% + 2em);
 }
 
 @media (max-width: 800px) {
