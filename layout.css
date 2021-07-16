@@ -72,11 +72,11 @@ nav button[sui-style~="flat"] {
 }
 
 nav button[sui-style~="flat"]:first-child {
-    margin-left: 0;
+    margin-inline-start: 0;
 }
 
 nav button[sui-style~="flat"]:last-child {
-    margin-right: 0;
+    margin-inline-end: 0;
 }
 
 nav[sui-style~="thick"] {
