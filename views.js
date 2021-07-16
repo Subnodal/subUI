@@ -133,7 +133,7 @@ namespace("com.subnodal.subui.views", function(exports) {
     };
 
     /*
-        @name selectListItem
+        @name openListItem
         Open an item from a list, triggering any event callbacks.
         @param element <Node> The item node to open
     */

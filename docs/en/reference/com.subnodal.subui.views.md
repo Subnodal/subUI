@@ -80,18 +80,18 @@ added views will automatically be subject to the attached events.
 
 **Returns:** `[Node]` · The currently-selected list items
 
+## ▶️ `openListItem`
+`function` · Open an item from a list, triggering any event callbacks.
+
+**Parameters:**
+* **`element`** (`Node`): The item node to open
+
 ## ▶️ `selectListItem`
 `function` · Select an item from a list, and present the selection to the user, triggering any event callbacks.
 
 **Parameters:**
 * **`element`** (`Node`): The item node to select
 * **`selectionMode`** (`selectionModes` = `selectionMode`): The mode to use when deciding the outcome of selection
-
-## ▶️ `selectListItem`
-`function` · Open an item from a list, triggering any event callbacks.
-
-**Parameters:**
-* **`element`** (`Node`): The item node to open
 
 ## 🔠️ `selectionMode`
 `var <selectionModes>` · The current selection mode, as determined by the current keyboard state.
