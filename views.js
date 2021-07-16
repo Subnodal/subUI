@@ -11,6 +11,15 @@ namespace("com.subnodal.subui.views", function(exports) {
     var elements = require("com.subnodal.subui.events");
 
     var lastSelectedElement = null;
+    var listSelectEvents = [];
+    var listItemOpenEvents = [];
+
+    class ElementEvent { 
+        constructor(element, callback) {
+            this.element = element;
+            this.callback = callback;
+        }
+    }
 
     exports.selectionModes = {
         SINGLE: 0,
@@ -80,6 +89,20 @@ namespace("com.subnodal.subui.views", function(exports) {
         }
 
         element.focus();
+
+        listSelectEvents.forEach(function(elementEvent) {
+            if (elementEvent.element == list) {
+                elementEvent.callback();
+            }
+        });
+    };
+
+    exports.openListItem = function(element) {
+        listItemOpenEvents.forEach(function(elementEvent) {
+            if (elementEvent.element == element) {
+                elementEvent.callback();
+            }
+        });
     };
 
     exports.deselectList = function(element) {
@@ -88,6 +111,77 @@ namespace("com.subnodal.subui.views", function(exports) {
         list.querySelectorAll("li").forEach(function(item) {
             item.removeAttribute("aria-selected");
         });
+    };
+
+    exports.generateListItem = function(name, icon, subtext = "", id = null, selected = false, renamable = true) {
+        var item = document.createElement("li");
+
+        item.setAttribute("tabindex", 0);
+        item.setAttribute("id", id);
+
+        if (selected) {
+            item.setAttribute("aria-selected", true);
+        }
+
+        var iconImage = document.createElement("img");
+
+        iconImage.setAttribute("aria-hidden", true);
+
+        iconImage.src = icon;
+
+        item.append(iconImage);
+
+        if (renamable) {
+            var nameInput = document.createElement("input");
+
+            nameInput.setAttribute("tabindex", -1);
+
+            nameInput.value = name;
+
+            item.append(nameInput);
+        } else {
+            var nameSpan = document.createElement("span");
+
+            nameSpan.textContent = name;
+
+            item.append(nameSpan);
+        }
+
+        var subtextSpan = document.createElement("span");
+
+        subtextSpan.textContent = subtext;
+
+        item.append(subtextSpan);
+
+        return item;
+    };
+
+    exports.getListItemName = function(element) {
+        return element.querySelector("input")?.value || element.querySelector("span")?.textContent || null;
+    };
+
+    exports.getListItemId = function(element) {
+        return element.getAttribute("id") || null;
+    };
+
+    exports.getSelectedListItems = function(element) {
+        return [...element.querySelectorAll("li[aria-selected='true']")];
+    };
+
+    exports.getSelectedListItemIds = function(element) {
+        return exports.getSelectedListItems(element).map((item) => item.getAttribute("id"));
+    };
+
+    exports.getSelectedListItemNames = function(element) {
+        return exports.getSelectedListItems(element).map((item) => exports.getListItemName(item));
+    };
+
+    exports.attachListSelectEvent = function(element, callback) {
+        listSelectEvents.push(new ElementEvent(element, callback));
+    };
+
+    exports.attachListItemOpenEvent = function(element, callback) {
+        listItemOpenEvents.push(new ElementEvent(element, callback));
     };
 
     exports.attachEvents = function() {
@@ -156,6 +250,8 @@ namespace("com.subnodal.subui.views", function(exports) {
 
             if (event.key == " ") {
                 exports.selectListItem(element);
+            } else if (event.key == "Enter") {
+                exports.openListItem(element);
             } else if (event.key == "ArrowUp") {
                 var itemsAbove = elements.filterByCondition(list.querySelectorAll("li"), (item) => item.offsetTop < element.offsetTop && item.offsetLeft == element.offsetLeft);
 
