@@ -2,6 +2,7 @@
     "identifier": "com.subnodal.subui",
     "modules": [
         "elements.js",
+        "hapticfeedback.js",
         "views.js",
         "subui.js"
     ]

@@ -10,10 +10,12 @@
 // @namespace com.subnodal.subui.views
 namespace("com.subnodal.subui.views", function(exports) {
     var elements = require("com.subnodal.subui.events");
+    var hapticFeedback = require("com.subnodal.subui.hapticfeedback");
 
     var lastSelectedElement = null;
     var listSelectEvents = [];
     var listItemOpenEvents = [];
+    var lastTouchTime = null;
 
     class ElementEvent { 
         constructor(element, callback) {
@@ -56,6 +58,23 @@ namespace("com.subnodal.subui.views", function(exports) {
         The current selection mode, as determined by the current keyboard state.
     */
     exports.selectionMode = exports.selectionModes.SINGLE;
+
+    /*
+        @name longPressDuration
+        @type var <Number>
+        The duration to use for detecting touch long-press events on mobile, in
+        milliseconds.
+    */
+    exports.longPressDuration = 500;
+
+    /*
+        @name setLongPressDuration
+        Set the duration to use for detecting touch long-press events on mobile.
+        @param duration <Number> The duration to use, in milliseconds.
+    */
+    exports.setLongPressDuration = function(duration) {
+        exports.longPressDuration = duration;
+    };
 
     /*
         @name selectListItem
@@ -341,12 +360,52 @@ namespace("com.subnodal.subui.views", function(exports) {
             }
         });
 
+        elements.attachSelectorEvent("dblclick", "ul[sui-iconlist] li", function(element, event) {
+            if (event.target.matches("input")) {
+                return;
+            }
+
+            exports.openListItem(element);
+        });
+
+        elements.attachSelectorEvent("touchstart", "ul[sui-iconlist] li", function(element, event) {
+            lastTouchTime = new Date();
+
+            setTimeout(function() {
+                if (lastTouchTime == null) {
+                    return;
+                }
+
+                if (new Date().getTime() - lastTouchTime.getTime() >= exports.longPressDuration) {
+                    exports.selectListItem(element);
+                }
+            }, exports.longPressDuration);
+        });
+
+        elements.attachSelectorEvent("touchend", "ul[sui-iconlist] li", function(element) {
+            if (new Date().getTime() - lastTouchTime.getTime() < exports.longPressDuration) {
+                exports.openListItem(element);
+            }
+
+            lastTouchTime = null;
+        });
+
+        elements.attachSelectorEvent("contextmenu", "ul[sui-iconlist]", function(element, event) {
+            if (lastTouchTime == null) {
+                return;
+            }
+
+            event.preventDefault();
+        });
+
         elements.attachSelectorEvent("keydown", "ul[sui-iconlist] li", function(element, event) {
             var list = elements.findAncestor(element, "ul[sui-iconlist]");
 
             if (event.target.matches("input")) {
                 if (event.key == "Escape" || event.key == "Enter") {
                     exports.selectListItem(element);
+
+                    hapticFeedback.vibrate(hapticFeedback.vibrationFeedbackTimings.select);
                 }
 
                 return;

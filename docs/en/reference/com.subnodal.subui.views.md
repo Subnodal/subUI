@@ -80,6 +80,9 @@ added views will automatically be subject to the attached events.
 
 **Returns:** `[Node]` · The currently-selected list items
 
+## 🔠️ `longPressDuration`
+`var <Number>` · The duration to use for detecting touch long-press events on mobile, in milliseconds.
+
 ## ▶️ `openListItem`
 `function` · Open an item from a list, triggering any event callbacks.
 
@@ -107,3 +110,9 @@ added views will automatically be subject to the attached events.
 
 ## 🔒️ `selectionModes.SINGLE`
 `const <*>` · Select only one item at a time, deselecting previous items.
+
+## ▶️ `setLongPressDuration`
+`function` · Set the duration to use for detecting touch long-press events on mobile.
+
+**Parameters:**
+* **`duration`** (`Number`): The duration to use, in milliseconds.
