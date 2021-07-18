@@ -27,9 +27,10 @@
     --navText: var(--panelText);
     --navUi: var(--ui);
     --navUiText: var(--uiText);
+    --navUiHover: var(--uiHover);
     --navUiPress: var(--uiPress);
     --navUiFlat: var(--uiFlat);
-    --navUiFlatText: var(--panelText);
+    --navUiFlatText: var(--navText);
     --navUiFlatHover: rgba(0, 0, 0, 0.1);
     --navUiFlatPress: rgba(0, 0, 0, 0.2);
     --navInput: var(--uiInput);

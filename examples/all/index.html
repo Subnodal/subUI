@@ -10,21 +10,24 @@
     </head>
     <body>
         <nav sui-style="thick" sui-screen="desktop">
-            <img src="https://cloud.subnodal.com/media/logo.svg" alt="Subnodal Cloud">
+            <img src="https://cloud.subnodal.com/media/icon.svg" aria-hidden="true">
+            <span sui-mono>{<strong>subnodal</strong>} cloud</span>
             <sui-spacer sui-size="grow"></sui-spacer>
-            <button sui-style="thick flat">
-                <img src="/media/account.svg" alt="Account">
+            <button sui-style="thick flat circular">
+                <img src="/media/account.svg" sui-style="profile" alt="Account">
             </button>
         </nav>
         <nav>
-            <button sui-style="flat"><sui-icon sui-mirrorable>arrow_back</sui-icon></button>
-            <button sui-style="flat"><sui-icon sui-mirrorable>arrow_forward</sui-icon></button>
+            <button sui-style="flat" aria-label="Back"><sui-icon sui-mirrorable aria-hidden="true">arrow_back</sui-icon></button>
+            <button sui-style="flat" aria-label="Forward"><sui-icon sui-mirrorable aria-hidden="true">arrow_forward</sui-icon></button>
             <sui-spacer></sui-spacer>
-            <button><sui-icon sui-mirrorable>add</sui-icon> New <sui-icon sui-mirrorable>arrow_drop_down</sui-icon></button>
-            <sui-spacer></sui-spacer>
-            <input value="/home/user" sui-size="grow">
-            <sui-spacer></sui-spacer>
-            <button sui-style="flat"><sui-icon sui-mirrorable>menu</sui-icon></button>
+            <button><sui-icon sui-mirrorable aria-hidden="true">add</sui-icon> New <sui-icon sui-mirrorable aria-hidden="true">arrow_drop_down</sui-icon></button>
+            <sui-spacer sui-screen="desktop"></sui-spacer>
+            <input value="/home/user" sui-size="grow" sui-screen="desktop">
+            <sui-spacer sui-screen="desktop"></sui-spacer>
+            <sui-spacer sui-size="grow" sui-screen="mobile"></sui-spacer>
+            <button sui-style="flat" sui-screen="mobile" aria-label="Search"><sui-icon sui-mirrorable aria-hidden="true">search</sui-icon></button>
+            <button sui-style="flat" aria-label="Menu"><sui-icon sui-mirrorable aria-hidden="true">menu</sui-icon></button>
         </nav>
         <main>
             <sui-panels>

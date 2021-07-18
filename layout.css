@@ -58,13 +58,31 @@ nav > *[sui-style~="thick"] {
     margin-bottom: 0!important;
 }
 
-nav > span {
-    margin-top: 8px;
-    margin-bottom: 8px;
+nav[sui-style~="thick"] > button[sui-style~="circular"] {
+    width: 3rem;
+    padding: 0.35rem;
+}
+
+nav span {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 nav img {
     height: 100%;
+}
+
+nav button {
+    background-color: var(--navUi);
+    color: var(--navUiText);
+}
+
+nav button:hover:not(:disabled) {
+    background-color: var(--navUiHover);
+}
+
+nav button:active:not(:disabled) {
+    background-color: var(--navUiPress);
 }
 
 nav button[sui-style~="flat"] {
@@ -103,12 +121,17 @@ nav[sui-style~="thick"] button, nav[sui-style~="thick"] input, nav[sui-style~="t
     margin-bottom: 0.5rem;
 }
 
+nav[sui-style="thick"] span {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
 sui-spacer {
     display: block;
     height: 1rem;
 }
 
-nav > sui-spacer {
+nav sui-spacer {
     display: inline-block;
     flex-shrink: 1;
     width: 1rem;
@@ -121,11 +144,11 @@ sui-panels {
     margin: -0.5rem;
 }
 
-sui-panels > * {
+sui-panels sui-panel, sui-panels sui-content {
     margin: 0.5rem;
 }
 
-sui-panels > sui-panel {
+sui-panels sui-panel {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -136,16 +159,16 @@ sui-panels > sui-panel {
     overflow: auto;
 }
 
-sui-panels > sui-panel nav {
+sui-panels sui-panel nav {
     background-color: var(--uiInput);
     color: var(--uiInputText);
 }
 
-sui-panels > sui-panel main {
+sui-panels sui-panel main {
     padding: 0.5rem;
 }
 
-sui-panels > sui-content {
+sui-panels sui-content {
     flex-grow: 1;
     margin: 0;
     padding: 1rem;
