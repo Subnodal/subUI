@@ -60,8 +60,12 @@ input:not([type="checkbox"]):focus {
     outline: none;
 }
 
-h1, code, [sui-mono] {
+h1, code, [sui-mono], [sui-brand] {
     font-family: "Overpass Mono", "Roboto Mono", sans-serif;
+}
+
+[sui-brand] {
+    color: var(--foregroundSubtle);
 }
 
 h1 {
