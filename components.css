@@ -102,30 +102,38 @@ button {
     transition: 0.5s background-color;
 }
 
-button:hover {
+button:hover:not(:disabled) {
     background-color: var(--uiHover);
 }
 
-body[sui-target="web"] button:hover {
+button:active:not(:disabled) {
+    background-color: var(--uiPress);
+}
+
+body[sui-target="web"] button:hover:not(:disabled) {
     cursor: pointer!important;
 }
 
 button:disabled {
-    background-color: var(--coverText);
+    opacity: 0.5;
+    cursor: default;
 }
 
-body[sui-target="web"] button:disabled {
+button:disabled * {
     cursor: default!important;
 }
 
 button[sui-style~="flat"] {
-    background-color: inherit;
+    background-color: var(--uiFlat);
     color: var(--uiFlatText);
 }
 
-button[sui-style~="flat"]:disabled {
-    background-color: inherit;
-    color: var(--coverText);
+button[sui-style~="flat"]:hover:not(:disabled) {
+    background-color: var(--uiFlatHover);
+}
+
+button[sui-style~="flat"]:active:not(:disabled) {
+    background-color: var(--uiFlatPress);
 }
 
 button img {
@@ -168,11 +176,11 @@ label span {
 }
 
 input, select {
-    height: fit-content;
-    margin: 4px;
-    padding: 8px;
-    padding-left: 10px;
-    padding-right: 10px;
+    height: 2rem;
+    padding: 0.5rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    font-size: 1rem;
     border-radius: 5px;
     border: none;
     background-color: var(--uiInput);

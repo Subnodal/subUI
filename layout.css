@@ -30,8 +30,8 @@ nav {
     padding: 0.5rem;
     padding-left: 0.75rem;
     padding-right: 0.75rem;
-    background-color: var(--panel);
-    color: var(--panelText);
+    background-color: var(--nav);
+    color: var(--navText);
     overflow: hidden;
 }
 
@@ -68,7 +68,16 @@ nav img {
 }
 
 nav button[sui-style~="flat"] {
-    color: inherit;
+    background-color: var(--navUiFlat);
+    color: var(--navUiFlatText);
+}
+
+nav button[sui-style~="flat"]:hover:not(:disabled) {
+    background-color: var(--navUiFlatHover);
+}
+
+nav button[sui-style~="flat"]:active:not(:disabled) {
+    background-color: var(--navUiFlatPress);
 }
 
 nav button[sui-style~="flat"]:first-child {
@@ -77,6 +86,12 @@ nav button[sui-style~="flat"]:first-child {
 
 nav button[sui-style~="flat"]:last-child {
     margin-inline-end: 0;
+}
+
+nav input {
+    flex-shrink: 1;
+    background-color: var(--navInput);
+    color: var(--navInputText);
 }
 
 nav[sui-style~="thick"] {
