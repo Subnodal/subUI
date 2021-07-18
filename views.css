@@ -69,7 +69,7 @@ ul[sui-iconlist] li input + span, ul[sui-iconlist] li span + span {
 
 ul[sui-iconlist][sui-style~="compact"] li {
     width: 16rem;
-    height: 3rem;
+    min-height: 3rem;
     text-align: start;
     vertical-align: top;
 }
@@ -125,7 +125,7 @@ ul[sui-iconlist][sui-style~="compact"] li span + span {
     ul[sui-iconlist] li {
         display: block;
         width: calc(100% - 0.2rem)!important;
-        height: 3rem;
+        min-height: 3rem;
         text-align: start;
         font-size: 0.8rem;
     }
