@@ -92,6 +92,10 @@ added views will automatically be subject to the attached events.
 ## ▶️ `selectListItem`
 `function` · Select an item from a list, and present the selection to the user, triggering any event callbacks.
 
+
+The selection mode to use will be forced to `selectionModes.SINGLE`
+if the list's `sui-mode` attribute is `"single"`.
+
 **Parameters:**
 * **`element`** (`Node`): The item node to select
 * **`selectionMode`** (`selectionModes` = `selectionMode`): The mode to use when deciding the outcome of selection

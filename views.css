@@ -26,7 +26,7 @@ ul[sui-iconlist] li {
     transition: 0.1s background-color, 0.1s color;
 }
 
-ul[sui-iconlist] li[aria-selected="true"] {
+ul[sui-iconlist] li[aria-selected="true"]:not([sui-mode="single"] [aria-selected="true"] ~ *) {
     background-color: var(--ui);
     color: var(--uiText);
 }
@@ -113,7 +113,7 @@ ul[sui-iconlist][sui-style="compact"] li span:nth-child(2):last-child {
     margin-block-start: 0.7em;
 }
 
-ul[sui-iconlist][sui-style="compact"] li:not([aria-selected="true"]) input + span, ul[sui-iconlist][sui-style="compact"] li:not([aria-selected="true"]) span + span {
+ul[sui-iconlist][sui-style="compact"] li:not([aria-selected="true"]:not([sui-mode="single"] [aria-selected="true"] ~ *)) input + span, ul[sui-iconlist][sui-style="compact"] li:not([aria-selected="true"]:not([sui-mode="single"] [aria-selected="true"] ~ *)) span + span {
     color: var(--foregroundSubtle);
 }
 
@@ -175,7 +175,7 @@ ul[sui-iconlist][sui-style="compact"] li span + span {
         margin-block-start: 0.7em;
     }
     
-    ul[sui-iconlist] li:not([aria-selected="true"]) span:not(:first-child) {
+    ul[sui-iconlist] li:not([aria-selected="true"]:not([sui-mode="single"] [aria-selected="true"] ~ *)) span:not(:first-child) {
         color: var(--foregroundSubtle);
     }
 }

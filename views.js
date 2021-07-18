@@ -80,6 +80,9 @@ namespace("com.subnodal.subui.views", function(exports) {
         @name selectListItem
         Select an item from a list, and present the selection to the user,
         triggering any event callbacks.
+            ~~~~
+            The selection mode to use will be forced to `selectionModes.SINGLE`
+            if the list's `sui-mode` attribute is `"single"`.
         @param element <Node> The item node to select
         @param selectionMode <selectionModes = selectionMode> The mode to use when deciding the outcome of selection
     */
@@ -87,6 +90,10 @@ namespace("com.subnodal.subui.views", function(exports) {
         var list = elements.findAncestor(element, "ul[sui-iconlist]");
         var selectBefore = false;
         var selectBeforeFoundElement = false;
+
+        if (list.getAttribute("sui-mode") == "single") {
+            selectionMode = exports.selectionModes.SINGLE;
+        }
 
         list.querySelectorAll("li").forEach(function(item) {
             if (selectBeforeFoundElement) {
