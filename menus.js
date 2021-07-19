@@ -33,9 +33,6 @@ namespace("com.subnodal.subui.menus", function(exports) {
                 top = window.innerHeight - element.clientHeight - padTop - 10;
             }
 
-            console.log("===");
-            console.log(left);
-
             if (document.body.getAttribute("dir") != "rtl" && left + element.clientWidth + 5 > window.innerWidth) {
                 left = window.innerWidth - element.clientWidth - padLeft - 5;
             } else if (document.body.getAttribute("dir") == "rtl" && left - element.clientWidth - 5 < 0) {
