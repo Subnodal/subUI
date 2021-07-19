@@ -16,21 +16,32 @@ namespace("com.subnodal.subui.menus", function(exports) {
     var lastMouseX = 0;
     var lastMouseY = 0;
 
-    exports.openMenuAtPosition = function(element, top, left) {
+    exports.openMenuAtPosition = function(element, top, left, padTop = 0, padLeft = 0) {
         ignoreNextCloseEvent = true;
 
         clearTimeout(transitionTimeout);
+
+        if (document.body.querySelectorAll("sui-backdrop").length == 0) {
+            document.body.append(document.createElement("sui-backdrop"));
+        }
 
         element.setAttribute("sui-open", "fadeIn");
         element.querySelector("button")?.focus();
 
         setTimeout(function() {
             if (top + element.clientHeight + 10 > window.innerHeight) {
-                top = window.innerHeight - element.clientHeight - openerElement.clientHeight - 10;
+                top = window.innerHeight - element.clientHeight - padTop - 10;
             }
 
-            if (left + element.clientWidth + 5 > window.innerWidth) {
-                left = window.innerWidth - element.clientWidth - 5;
+            console.log("===");
+            console.log(left);
+
+            if (document.body.getAttribute("dir") != "rtl" && left + element.clientWidth + 5 > window.innerWidth) {
+                left = window.innerWidth - element.clientWidth - padLeft - 5;
+            } else if (document.body.getAttribute("dir") == "rtl" && left - element.clientWidth - 5 < 0) {
+                left = padLeft + 5;
+            } else if (document.body.getAttribute("dir") == "rtl") {
+                left = left - element.clientWidth;
             }
 
             element.style.top = `${top}px`;
@@ -47,7 +58,14 @@ namespace("com.subnodal.subui.menus", function(exports) {
 
         element.returnElement = openerElement;
 
-        exports.openMenuAtPosition(element, openerPosition.top + openerPosition.height, openerPosition.left);
+        exports.openMenuAtPosition(
+            element,
+            openerPosition.top + openerPosition.height,
+            document.body.getAttribute("dir") != "rtl" ? openerPosition.left : openerPosition.left + openerPosition.width,
+            openerPosition.height
+        );
+
+        // Doesn't specify `padWidth` because otherwise alignment would break if menu becomes flipped
     };
 
     exports.closeMenu = function(element) {
@@ -80,7 +98,13 @@ namespace("com.subnodal.subui.menus", function(exports) {
         if (element.getAttribute("sui-open") == "true") {
             exports.closeMenu(element);
         } else {
-            exports.openMenuAtPosition(element, lastMouseY, lastMouseX);
+            exports.openMenuAtPosition(
+                element,
+                lastMouseY,
+                lastMouseX,
+                window.innerHeight - lastMouseY,
+                document.body.getAttribute("dir") != "rtl" ? window.innerWidth - lastMouseX : lastMouseX
+            );
         }
     };
 

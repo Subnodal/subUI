@@ -269,7 +269,7 @@ sui-icon {
 }
 
 [dir="rtl"] sui-icon[sui-mirrorable] {
-    transform: rotateZ(180deg);
+    transform: rotateY(180deg);
 }
 
 sui-loader {

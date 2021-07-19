@@ -10,6 +10,7 @@
 sui-menu {
     position: fixed;
     display: none;
+    max-height: 80vh;
     margin-block-start: 5px;
     margin-block-end: 5px;
     background-color: var(--menu);
@@ -17,6 +18,22 @@ sui-menu {
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
     opacity: 0;
+    z-index: 1;
+    overflow: auto;
+    transition: 0.5s opacity;
+}
+
+sui-menu ~ sui-backdrop {
+    position: fixed;
+    display: none;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
     transition: 0.5s opacity;
 }
 
@@ -28,8 +45,17 @@ sui-menu[sui-open="fadeIn"] {
     opacity: 0;
 }
 
+sui-menu[sui-open="fadeIn"] ~ sui-backdrop {
+    opacity: 0;
+}
+
 sui-menu[sui-open="true"] {
     opacity: 1;
+}
+
+sui-menu[sui-open="true"] ~ sui-backdrop {
+    opacity: 1;
+    pointer-events: all;
 }
 
 sui-menu button {
@@ -65,4 +91,18 @@ sui-menu button img {
     width: 1em;
     height: 1em;
     object-fit: contain;
+}
+
+@media (max-width: 600px) {
+    sui-menu {
+        top: unset!important;
+        bottom: 0;
+        left: 0!important;
+        right: 0;
+        margin: 1em;
+    }
+
+    sui-menu[sui-open="true"] ~ sui-backdrop, sui-menu[sui-open="fadeIn"] ~ sui-backdrop, sui-menu[sui-open="fadeOut"] ~ sui-backdrop {
+        display: block;
+    }
 }
