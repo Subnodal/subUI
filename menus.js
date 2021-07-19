@@ -10,8 +10,11 @@
 // @namespace com.subnodal.subui.menus
 namespace("com.subnodal.subui.menus", function(exports) {
     var elements = require("com.subnodal.subui.elements");
+
     var ignoreNextCloseEvent = false;
     var transitionTimeout = null;
+    var lastMouseX = 0;
+    var lastMouseY = 0;
 
     exports.openMenuAtPosition = function(element, top, left) {
         ignoreNextCloseEvent = true;
@@ -71,6 +74,16 @@ namespace("com.subnodal.subui.menus", function(exports) {
         }
     };
 
+    exports.toggleContextMenu = function(element, togglerElement = document.body) {
+        element.returnElement = togglerElement;
+
+        if (element.getAttribute("sui-open") == "true") {
+            exports.closeMenu(element);
+        } else {
+            exports.openMenuAtPosition(element, lastMouseY, lastMouseX);
+        }
+    };
+
     exports.attachEvents = function() {
         window.addEventListener("click", function(event) {
             if (ignoreNextCloseEvent) {
@@ -90,6 +103,19 @@ namespace("com.subnodal.subui.menus", function(exports) {
             if (event.key == "Escape") {
                 document.querySelectorAll("sui-menu").forEach((element) => exports.closeMenu(element));
             }
+        });
+
+        window.addEventListener("mousemove", function(event) {
+            lastMouseX = event.clientX;
+            lastMouseY = event.clientY;
+        });
+
+        window.addEventListener("contextmenu", function(event) {
+            if (document.body.getAttribute("sui-target") == "web") {
+                return;
+            }
+
+            event.preventDefault();
         });
 
         elements.attachSelectorEvent("keydown", "sui-menu button", function(element, event) {
