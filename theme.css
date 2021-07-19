@@ -35,6 +35,12 @@
     --navUiFlatPress: rgba(0, 0, 0, 0.2);
     --navInput: var(--uiInput);
     --navInputText: var(--uiInputText);
+    --menu: var(--background);
+    --menuText: var(--foreground);
+    --menuSelect: var(--navUiFlat);
+    --menuSelectText: var(--navUiFlatText);
+    --menuSelectHover: var(--navUiFlatHover);
+    --menuSelectPress: var(--navUiFlatPress);
     --scrollbar: rgba(0, 0, 0, 0.5);
     --scrollbarHover: rgba(0, 0, 0, 0.6);
     --scrollbarPress: rgba(0, 0, 0, 0.8);

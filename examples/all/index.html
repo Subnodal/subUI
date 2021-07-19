@@ -21,7 +21,11 @@
             <button sui-style="flat" aria-label="Back"><sui-icon sui-mirrorable aria-hidden="true">arrow_back</sui-icon></button>
             <button sui-style="flat" aria-label="Forward"><sui-icon sui-mirrorable aria-hidden="true">arrow_forward</sui-icon></button>
             <sui-spacer></sui-spacer>
-            <button><sui-icon sui-mirrorable aria-hidden="true">add</sui-icon> New <sui-icon sui-mirrorable aria-hidden="true">arrow_drop_down</sui-icon></button>
+            <button onclick="require('com.subnodal.subui.menus').toggleMenu(document.querySelector('#newItemMenu'), this);">
+                <sui-icon sui-mirrorable aria-hidden="true">add</sui-icon>
+                New
+                <sui-icon sui-mirrorable aria-hidden="true">arrow_drop_down</sui-icon>
+            </button>
             <sui-spacer sui-screen="desktop"></sui-spacer>
             <input value="/home/user" sui-size="grow" sui-screen="desktop">
             <sui-spacer sui-screen="desktop"></sui-spacer>
@@ -103,5 +107,11 @@
                 </sui-panel>
             </sui-panels>
         </main>
+        <sui-menu id="newItemMenu">
+            <button>Folder</button>
+            <button>Writer document</button>
+            <button>Sigma spreadsheet</button>
+            <button>Presenter presentation</button>
+        </sui-menu>
     </body>
 </html>

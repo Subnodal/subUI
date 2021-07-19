@@ -245,8 +245,8 @@ input[type="checkbox"]:focus::before {
 }
 
 img[sui-style~="profile"] {
-    width: 5em;
-    height: 5em;
+    width: 5rem;
+    height: 5rem;
     background-color: white; /* To ensure a same-looking profile picture across themes */
     object-fit: cover;
     border-radius: 100%;

@@ -9,7 +9,7 @@
 
 // @namespace com.subnodal.subui.views
 namespace("com.subnodal.subui.views", function(exports) {
-    var elements = require("com.subnodal.subui.events");
+    var elements = require("com.subnodal.subui.elements");
     var hapticFeedback = require("com.subnodal.subui.hapticfeedback");
 
     var lastSelectedElement = null;

@@ -1,0 +1,68 @@
+/*
+    subUI
+
+    Copyright (C) Subnodal Technologies. All Rights Reserved.
+
+    https://subnodal.com
+    Licenced by the Subnodal Open-Source Licence, which can be found at LICENCE.md.
+*/
+
+sui-menu {
+    position: fixed;
+    display: none;
+    margin-block-start: 5px;
+    margin-block-end: 5px;
+    background-color: var(--menu);
+    color: var(--menuText);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: 0.5s opacity;
+}
+
+sui-menu[sui-open="true"], sui-menu[sui-open="fadeIn"], sui-menu[sui-open="fadeOut"] {
+    display: block;
+}
+
+sui-menu[sui-open="fadeIn"] {
+    opacity: 0;
+}
+
+sui-menu[sui-open="true"] {
+    opacity: 1;
+}
+
+sui-menu button {
+    display: block;
+    width: 100%;
+    background-color: inherit;
+    color: inherit;
+    text-align: start;
+}
+
+sui-menu button:hover:not(:disabled), sui-menu button:focus:focus-visible:not(:disabled) {
+    background-color: var(--menuSelectHover);
+    color: var(--menuSelectText);
+    outline: none;
+}
+
+sui-menu button:active:not(:disabled) {
+    background-color: var(--menuSelectPress);
+    color: var(--menuSelectText);
+}
+
+sui-menu button:not(:first-child) {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+sui-menu button:not(:last-child) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+sui-menu button img {
+    width: 1em;
+    height: 1em;
+    object-fit: contain;
+}

@@ -4,6 +4,7 @@
         "elements.js",
         "hapticfeedback.js",
         "views.js",
+        "menus.js",
         "subui.js"
     ]
 }

@@ -7,8 +7,8 @@
     Licenced by the Subnodal Open-Source Licence, which can be found at LICENCE.md.
 */
 
-// @namespace com.subnodal.subui.events
-namespace("com.subnodal.subui.events", function(exports) {
+// @namespace com.subnodal.subui.elements
+namespace("com.subnodal.subui.elements", function(exports) {
     /*
         @name findAncestor
         Find an ancestor of self element that matches the given selector.

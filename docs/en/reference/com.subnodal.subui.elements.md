@@ -1,4 +1,4 @@
-# com.subnodal.subui.events
+# com.subnodal.subui.elements
 ## ▶️ `attachSelectorEvent`
 `function` · Attach an event which is specific to a given selector, and applies to all current and future events.
 
