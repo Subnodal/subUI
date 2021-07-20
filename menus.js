@@ -17,6 +17,8 @@ namespace("com.subnodal.subui.menus", function(exports) {
     var lastMouseY = 0;
 
     exports.openMenuAtPosition = function(element, top, left, padTop = 0, padLeft = 0, minWidth = 0) {
+        document.querySelectorAll("sui-menu[sui-role='select']").forEach((element) => exports.closeMenu(element));
+
         ignoreNextCloseEvent = true;
 
         clearTimeout(transitionTimeout);
@@ -38,15 +40,15 @@ namespace("com.subnodal.subui.menus", function(exports) {
             element.style.minWidth = `${minWidth}px`;
 
             if (top + element.clientHeight + 10 > window.innerHeight) {
-                top = window.innerHeight - element.clientHeight - padTop - 10;
+                top = Math.max(top - element.clientHeight - padTop - 10, 5);
             }
 
             if (document.body.getAttribute("dir") != "rtl" && left + element.clientWidth + 5 > window.innerWidth) {
-                left = window.innerWidth - element.clientWidth - padLeft - 5;
+                left = Math.max(window.innerWidth - element.clientWidth - padLeft - 5, 5);
             } else if (document.body.getAttribute("dir") == "rtl" && left - element.clientWidth - 5 < 0) {
-                left = padLeft + 5;
+                left = Math.max(padLeft + 5, 5);
             } else if (document.body.getAttribute("dir") == "rtl") {
-                left = left - element.clientWidth;
+                left = Math.max(left - element.clientWidth, 5);
             }
 
             element.style.top = `${top}px`;
@@ -113,7 +115,7 @@ namespace("com.subnodal.subui.menus", function(exports) {
                 element,
                 lastMouseY,
                 lastMouseX,
-                window.innerHeight - lastMouseY,
+                0,
                 document.body.getAttribute("dir") != "rtl" ? window.innerWidth - lastMouseX : lastMouseX
             );
         }
@@ -210,6 +212,8 @@ namespace("com.subnodal.subui.menus", function(exports) {
 
             event.preventDefault();
             element.blur();
+
+            document.querySelectorAll("sui-menu:not([sui-role='select'])").forEach((element) => exports.closeMenu(element));
 
             exports.toggleMenu(selectMenu, element, true);
 

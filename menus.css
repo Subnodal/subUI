@@ -42,6 +42,10 @@ sui-menu[sui-open="true"], sui-menu[sui-open="fadeIn"], sui-menu[sui-open="fadeO
     display: block;
 }
 
+sui-menu:not([sui-open="true"]) {
+    pointer-events: none;
+}
+
 sui-menu[sui-open="fadeIn"] {
     opacity: 0;
 }
