@@ -164,8 +164,8 @@ sui-panels sui-panel nav {
     color: var(--uiInputText);
 }
 
-sui-panels sui-panel main {
-    padding: 0.5rem;
+sui-panels sui-panel aside {
+    overflow: auto;
 }
 
 sui-panels sui-content {
