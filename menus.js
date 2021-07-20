@@ -28,7 +28,6 @@ namespace("com.subnodal.subui.menus", function(exports) {
                 ignoreNextCloseEvent = false;
             });
 
-
             document.body.append(backdrop);
         }
 
