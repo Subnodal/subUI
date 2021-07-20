@@ -189,6 +189,13 @@ label {
     margin-block-end: 0.2rem;
 }
 
+label[sui-style="switch"] {
+    display: inline-block;
+    width: calc(100% - 4rem);
+    max-width: calc(30rem - 4rem);
+    vertical-align: top;
+}
+
 *:first-child > label {
     margin-block-start: 0;
 }
@@ -267,6 +274,25 @@ input[type="checkbox"], input[type="radio"] {
     transition: 0.5s background-color;
 }
 
+input[type="checkbox"][role="switch"] {
+    width: 3.6rem;
+    height: 1.8rem;
+    border-radius: 1rem;
+}
+
+input[type="checkbox"][role="switch"]::after {
+    display: block;
+    width: 1.2rem;
+    height: 1.2rem;
+    margin-block-start: 0.3rem;
+    margin-inline-start: 0.4rem;
+    margin-inline-end: 2rem;
+    background-color: var(--ui);
+    border-radius: 100%;
+    content: "";
+    transition: 0.5s background-color, 0.5s margin-inline-start, 0.5s margin-inline-end;
+}
+
 input[type="radio"] {
     border-radius: 100%;
 }
@@ -280,7 +306,7 @@ input[type="checkbox"]:checked, input[type="checkbox"]:indeterminate, input[type
     background-color: var(--ui);
 }
 
-input[type="checkbox"]:checked::after, input[type="checkbox"]:indeterminate::after, input[type="radio"]:checked::after {
+input[type="checkbox"]:not([role="switch"]):checked::after, input[type="checkbox"]:indeterminate::after, input[type="radio"]:checked::after {
     display: block;
     width: 100%;
     height: 100%;
@@ -288,7 +314,7 @@ input[type="checkbox"]:checked::after, input[type="checkbox"]:indeterminate::aft
     content: "";
 }
 
-input[type="checkbox"]:checked::after {
+input[type="checkbox"]:not([role="switch"]):checked::after {
     background: url("/media/icons/checkmark.svg") no-repeat;
     background-size: contain;
     background-position: center;
@@ -298,6 +324,12 @@ input[type="checkbox"]:indeterminate::after {
     background: url("/media/icons/indeterminate.svg") no-repeat;
     background-size: contain;
     background-position: center;
+}
+
+input[type="checkbox"][role="switch"]:checked::after {
+    margin-inline-start: 2rem;
+    margin-inline-end: 0.4rem;
+    background-color: var(--uiText);
 }
 
 input[type="radio"]:checked::after {
