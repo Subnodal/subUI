@@ -287,11 +287,11 @@ input[type="checkbox"][role="switch"] {
 
 input[type="checkbox"][role="switch"]::after {
     display: block;
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.25rem;
+    height: 1.25rem;
     margin-block-start: 0.3rem;
-    margin-inline-start: 0.4rem;
-    margin-inline-end: 2rem;
+    margin-inline-start: 0.35rem;
+    margin-inline-end: 1.95rem;
     background-color: var(--ui);
     border-radius: 100%;
     content: "";
@@ -332,8 +332,8 @@ input[type="checkbox"]:indeterminate::after {
 }
 
 input[type="checkbox"][role="switch"]:checked::after {
-    margin-inline-start: 2rem;
-    margin-inline-end: 0.4rem;
+    margin-inline-start: 1.95rem;
+    margin-inline-end: 0.35rem;
     background-color: var(--uiText);
 }
 
