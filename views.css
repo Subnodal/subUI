@@ -45,7 +45,7 @@ ul[sui-iconlist] li img {
 ul[sui-iconlist] li input {
     display: block;
     width: calc(100% + 0.2rem);
-    height: fit-content;
+    height: 1.2rem;
     margin: -0.1rem;
     padding: 0.1rem;
     background-color: transparent;
@@ -68,6 +68,7 @@ ul[sui-iconlist] li input + span, ul[sui-iconlist] li span + span {
 }
 
 ul[sui-iconlist][sui-style~="compact"] li {
+    position: relative;
     width: 16rem;
     min-height: 3rem;
     text-align: start;
@@ -75,16 +76,12 @@ ul[sui-iconlist][sui-style~="compact"] li {
 }
 
 ul[sui-iconlist][sui-style~="compact"] li img {
-    float: left;
+    position: absolute;
     width: 32px;
     height: 32px;
     margin: 0.1rem;
     margin-inline-end: 0.5rem;
     vertical-align: middle;
-}
-
-[dir="rtl"] ul[sui-iconlist][sui-style~="compact"] li img {
-    float: right;
 }
 
 ul[sui-iconlist][sui-style~="compact"] li input {

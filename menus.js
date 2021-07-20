@@ -16,7 +16,7 @@ namespace("com.subnodal.subui.menus", function(exports) {
     var lastMouseX = 0;
     var lastMouseY = 0;
 
-    exports.openMenuAtPosition = function(element, top, left, padTop = 0, padLeft = 0) {
+    exports.openMenuAtPosition = function(element, top, left, padTop = 0, padLeft = 0, minWidth = 0) {
         ignoreNextCloseEvent = true;
 
         clearTimeout(transitionTimeout);
@@ -29,6 +29,8 @@ namespace("com.subnodal.subui.menus", function(exports) {
         element.querySelector("button")?.focus();
 
         setTimeout(function() {
+            element.style.minWidth = `${minWidth}px`;
+
             if (top + element.clientHeight + 10 > window.innerHeight) {
                 top = window.innerHeight - element.clientHeight - padTop - 10;
             }
@@ -50,7 +52,7 @@ namespace("com.subnodal.subui.menus", function(exports) {
         });
     };
 
-    exports.openMenu = function(element, openerElement = document.body) {
+    exports.openMenu = function(element, openerElement = document.body, expandWidth = false) {
         var openerPosition = openerElement.getBoundingClientRect();
 
         element.returnElement = openerElement;
@@ -59,13 +61,19 @@ namespace("com.subnodal.subui.menus", function(exports) {
             element,
             openerPosition.top + openerPosition.height,
             document.body.getAttribute("dir") != "rtl" ? openerPosition.left : openerPosition.left + openerPosition.width,
-            openerPosition.height
+            openerPosition.height,
+            0,
+            expandWidth ? openerPosition.width : 0
         );
 
         // Doesn't specify `padWidth` because otherwise alignment would break if menu becomes flipped
     };
 
     exports.closeMenu = function(element) {
+        if (element.getAttribute("sui-open") == null) {
+            return;
+        }
+
         if (!!element.returnElement) {
             element.returnElement.focus();
 
@@ -75,17 +83,17 @@ namespace("com.subnodal.subui.menus", function(exports) {
         element.setAttribute("sui-open", "fadeOut");
 
         clearTimeout(transitionTimeout);
-        
+
         transitionTimeout = setTimeout(function() {
             element.removeAttribute("sui-open");
         }, 500);
     };
 
-    exports.toggleMenu = function(element, togglerElement = document.body) {
+    exports.toggleMenu = function(element, togglerElement = document.body, expandWidth = false) {
         if (element.getAttribute("sui-open") == "true") {
             exports.closeMenu(element);
         } else {
-            exports.openMenu(element, togglerElement);
+            exports.openMenu(element, togglerElement, expandWidth);
         }
     };
 
@@ -152,6 +160,70 @@ namespace("com.subnodal.subui.menus", function(exports) {
                 ).focus();
             } else if (event.key == "Tab") {
                 event.preventDefault();
+            }
+        });
+
+        function toggleSelectMenuCallback(element, event) {
+            if (document.body.querySelectorAll("sui-menu[sui-role='select']").length == 0) {
+                var newSelectMenu = document.createElement("sui-menu");
+
+                newSelectMenu.setAttribute("sui-role", "select");
+
+                document.body.append(newSelectMenu);
+            }
+
+            var selectMenu = document.body.querySelector("sui-menu[sui-role='select']");
+            var selectOptions = element.querySelectorAll("option");
+            var optionIndex = 0;
+
+            selectMenu.innerHTML = "";
+
+            selectOptions.forEach(function(option) {
+                var optionButton = document.createElement("button");
+
+                optionButton.innerHTML = option.innerHTML;
+
+                selectMenu.append(optionButton);
+
+                (function(optionIndex) {
+                    optionButton.addEventListener("click", function() {
+                        element.selectedIndex = optionIndex;
+
+                        exports.closeMenu(selectMenu);
+                    });
+                })(optionIndex);
+
+                setTimeout(function() {
+                    if (element.options[element.selectedIndex] == option) {
+                        console.log(optionButton);
+                        optionButton.focus();
+                    }
+                });
+
+                optionIndex++;
+            });
+
+            event.preventDefault();
+            element.blur();
+
+            exports.toggleMenu(selectMenu, element, true);
+
+            setTimeout(function() {
+                ignoreNextCloseEvent = true;
+            });
+        }
+
+        elements.attachSelectorEvent("mousedown", "select", function(element, event) {
+            if (event.button != 0) {
+                return;
+            }
+            
+            toggleSelectMenuCallback(element, event);
+        });
+
+        elements.attachSelectorEvent("keydown", "select", function(element, event) {
+            if (event.key == "Enter" || event.key == " ") {
+                toggleSelectMenuCallback(element, event);                
             }
         });
     };
