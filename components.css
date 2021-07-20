@@ -276,11 +276,11 @@ input[type="radio"] {
     right: -0.6rem;
 }
 
-input[type="checkbox"]:checked, input[type="radio"]:checked {
+input[type="checkbox"]:checked, input[type="checkbox"]:indeterminate, input[type="radio"]:checked {
     background-color: var(--ui);
 }
 
-input[type="checkbox"]:checked::after, input[type="radio"]:checked::after {
+input[type="checkbox"]:checked::after, input[type="checkbox"]:indeterminate::after, input[type="radio"]:checked::after {
     display: block;
     width: 100%;
     height: 100%;
@@ -290,6 +290,12 @@ input[type="checkbox"]:checked::after, input[type="radio"]:checked::after {
 
 input[type="checkbox"]:checked::after {
     background: url("/media/icons/checkmark.svg") no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+input[type="checkbox"]:indeterminate::after {
+    background: url("/media/icons/indeterminate.svg") no-repeat;
     background-size: contain;
     background-position: center;
 }
