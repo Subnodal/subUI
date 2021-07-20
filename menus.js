@@ -22,7 +22,14 @@ namespace("com.subnodal.subui.menus", function(exports) {
         clearTimeout(transitionTimeout);
 
         if (document.body.querySelectorAll("sui-backdrop").length == 0) {
-            document.body.append(document.createElement("sui-backdrop"));
+            var backdrop = document.createElement("sui-backdrop");
+
+            backdrop.addEventListener("click", function() {
+                ignoreNextCloseEvent = false;
+            });
+
+
+            document.body.append(backdrop);
         }
 
         element.setAttribute("sui-open", "fadeIn");
@@ -195,7 +202,6 @@ namespace("com.subnodal.subui.menus", function(exports) {
 
                 setTimeout(function() {
                     if (element.options[element.selectedIndex] == option) {
-                        console.log(optionButton);
                         optionButton.focus();
                     }
                 });
