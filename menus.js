@@ -217,7 +217,17 @@ namespace("com.subnodal.subui.menus", function(exports) {
             event.preventDefault();
         });
 
+        elements.attachSelectorEvent("click", "sui-menu button", function(element, event) {
+            var menu = elements.findAncestor(element, "sui-menu");
+
+            if (element.getAttribute("sui-mode") != "keepOpen") {
+                exports.closeMenu(menu);
+            }
+        });
+
         elements.attachSelectorEvent("keydown", "sui-menu button", function(element, event) {
+            var menu = elements.findAncestor(element, "sui-menu");
+
             if (event.key == "ArrowUp") {
                 (
                     elements.findPreviousOfType(element, "button:not(:disabled)") ||
@@ -230,6 +240,12 @@ namespace("com.subnodal.subui.menus", function(exports) {
                 ).focus();
             } else if (event.key == "Tab") {
                 event.preventDefault();
+            } else if (event.key == "Space" || event.key == "Enter") {
+                if (element.getAttribute("sui-mode") != "keepOpen") {
+                    setTimeout(function() {
+                        exports.closeMenu(menu);                        
+                    });
+                }
             }
         });
 
@@ -258,8 +274,6 @@ namespace("com.subnodal.subui.menus", function(exports) {
                 (function(optionIndex) {
                     optionButton.addEventListener("click", function() {
                         element.selectedIndex = optionIndex;
-
-                        exports.closeMenu(selectMenu);
                     });
                 })(optionIndex);
 

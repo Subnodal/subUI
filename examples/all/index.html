@@ -163,12 +163,19 @@
         </sui-menu>
         <sui-menu id="viewContextMenu">
             <button><sui-icon aria-hidden="true">content_paste</sui-icon> Paste</button>
+            <hr sui-screen="desktop">
+            <button sui-screen="desktop" onclick="selectAll();"><sui-icon aria-hidden="true">select_all</sui-icon> Select all</button>
+            <button sui-screen="desktop" onclick="invertSelection();"><sui-icon aria-hidden="true"></sui-icon> Invert selection</button>
         </sui-menu>
         <sui-menu id="itemContextMenu">
-            <button><sui-icon aria-hidden="true">file_copy</sui-icon> Copy</button>
-            <button><sui-icon aria-hidden="true">content_paste</sui-icon> Paste</button>
+            <button sui-screen="desktop"><sui-icon aria-hidden="true">file_copy</sui-icon> Copy</button>
+            <button sui-screen="desktop"><sui-icon aria-hidden="true">content_paste</sui-icon> Paste</button>
+            <button sui-screen="mobile"><sui-icon aria-hidden="true">file_copy</sui-icon> Make a copy...</button>
             <button><sui-icon aria-hidden="true">drive_file_move</sui-icon> Move to...</button>
             <button><sui-icon aria-hidden="true">delete</sui-icon> Delete</button>
+            <hr sui-screen="desktop">
+            <button sui-screen="desktop" onclick="selectAll();"><sui-icon aria-hidden="true">select_all</sui-icon> Select all</button>
+            <button sui-screen="desktop" onclick="invertSelection();"><sui-icon aria-hidden="true"></sui-icon> Invert selection</button>
         </sui-menu>
     </body>
 </html>

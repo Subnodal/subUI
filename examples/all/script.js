@@ -2,6 +2,20 @@ var elements = require("com.subnodal.subui.elements");
 var menus = require("com.subnodal.subui.menus");
 var views = require("com.subnodal.subui.views");
 
+function selectAll() {
+    document.querySelectorAll("ul[sui-iconlist] li").forEach((element) => element.setAttribute("aria-selected", true));
+}
+
+function invertSelection() {
+    document.querySelectorAll("ul[sui-iconlist] li").forEach(function(element) {
+        if (element.hasAttribute("aria-selected")) {
+            element.removeAttribute("aria-selected");
+        } else {
+            element.setAttribute("aria-selected", true);
+        }
+    });
+}
+
 window.addEventListener("load", function() {
     document.querySelector("#exampleCheckbox3").indeterminate = true;
 

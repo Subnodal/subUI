@@ -86,9 +86,12 @@ sui-menu button:active:not(:disabled) {
     color: var(--menuSelectText);
 }
 
-sui-menu button img {
+sui-menu button img, sui-menu button sui-icon {
     width: 1em;
     height: 1em;
+}
+
+sui-menu button img {
     object-fit: contain;
 }
 
