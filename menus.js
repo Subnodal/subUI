@@ -16,7 +16,18 @@ namespace("com.subnodal.subui.menus", function(exports) {
     var lastMouseX = 0;
     var lastMouseY = 0;
 
-    exports.openMenuAtPosition = function(element, top, left, padTop = 0, padLeft = 0, minWidth = 0) {
+    /*
+        @name openMenuAtPosition
+        Open the given menu at the specified pixel coordinates. The menu may
+        change position if it is near to the edge of the screen.
+        @param element <Node> The menu node to open
+        @param x <Number> The X position to situate the menu nearby
+        @param y <Number> The Y position to situate the menu nearby
+        @param padWidth <Number = 0> The width of any opener element which the menu should avoid obstructing
+        @param padHeight <Number = 0> The height of any opener element which the menu should avoid obstructing
+        @param minWidth <Number = 0> The minimum width the menu should be; usually used to equally size the menu with relation to `select` elements
+    */
+    exports.openMenuAtPosition = function(element, x, y, padWidth = 0, padHeight = 0, minWidth = 0) {
         document.querySelectorAll("sui-menu[sui-role='select']").forEach((element) => exports.closeMenu(element));
 
         ignoreNextCloseEvent = true;
@@ -39,20 +50,20 @@ namespace("com.subnodal.subui.menus", function(exports) {
         setTimeout(function() {
             element.style.minWidth = `${minWidth}px`;
 
-            if (top + element.clientHeight + 10 > window.innerHeight) {
-                top = Math.max(top - element.clientHeight - padTop - 10, 5);
+            if (y + element.clientHeight + 10 > window.innerHeight) {
+                y = Math.max(y - element.clientHeight - padHeight - 10, 5);
             }
 
-            if (document.body.getAttribute("dir") != "rtl" && left + element.clientWidth + 5 > window.innerWidth) {
-                left = Math.max(window.innerWidth - element.clientWidth - padLeft - 5, 5);
-            } else if (document.body.getAttribute("dir") == "rtl" && left - element.clientWidth - 5 < 0) {
-                left = Math.max(padLeft + 5, 5);
+            if (document.body.getAttribute("dir") != "rtl" && x + element.clientWidth + 5 > window.innerWidth) {
+                x = Math.max(window.innerWidth - element.clientWidth - padWidth - 5, 5);
+            } else if (document.body.getAttribute("dir") == "rtl" && x - element.clientWidth - 5 < 0) {
+                x = Math.max(padWidth + 5, 5);
             } else if (document.body.getAttribute("dir") == "rtl") {
-                left = Math.max(left - element.clientWidth, 5);
+                x = Math.max(x - element.clientWidth, 5);
             }
 
-            element.style.top = `${top}px`;
-            element.style.left = `${left}px`;
+            element.style.top = `${y}px`;
+            element.style.left = `${x}px`;
 
             ignoreNextCloseEvent = false;
 
@@ -60,6 +71,17 @@ namespace("com.subnodal.subui.menus", function(exports) {
         });
     };
 
+    /*
+        @name openMenu
+        Open the given menu nearby the given opener element.
+            ~~~~
+            It is recommneded that `openerElement` is specified for
+            accessibility reasons. When the menu is closed using the Esc key on
+            the keyboard, focus will be returned to the opener element.
+        @param element <Node> The menu node to open
+        @param openerElement <Node = (global):document.body> The node of the element to position the menu nearby
+        @param expandWidth <Boolean = false> Whether to resize the menu to have a width of at least the opener element's width
+    */
     exports.openMenu = function(element, openerElement = document.body, expandWidth = false) {
         var openerPosition = openerElement.getBoundingClientRect();
 
@@ -67,16 +89,21 @@ namespace("com.subnodal.subui.menus", function(exports) {
 
         exports.openMenuAtPosition(
             element,
-            openerPosition.top + openerPosition.height,
             document.body.getAttribute("dir") != "rtl" ? openerPosition.left : openerPosition.left + openerPosition.width,
-            openerPosition.height,
+            openerPosition.top + openerPosition.height,
             0,
+            openerPosition.height,
             expandWidth ? openerPosition.width : 0
         );
 
         // Doesn't specify `padWidth` because otherwise alignment would break if menu becomes flipped
     };
 
+    /*
+        @name closeMenu
+        Close the given menu.
+        @param element <Node> The menu node to close
+    */
     exports.closeMenu = function(element) {
         if (element.getAttribute("sui-open") == null) {
             return;
@@ -97,6 +124,17 @@ namespace("com.subnodal.subui.menus", function(exports) {
         }, 500);
     };
 
+    /*
+        @name toggleMenu
+        Toggle whether the menu should be open nearby the given opener element.
+            ~~~~
+            It is recommneded that `togglerElement` is specified for
+            accessibility reasons. When the menu is closed using the Esc key on
+            the keyboard, focus will be returned to the toggler element.
+        @param element <Node> The menu node to toggle the opening of
+        @param togglerElement <Node = (global):document.body> The node of the element to position the menu nearby
+        @param expandWidth <Boolean = false> Whether to resize the menu to have a width of at least the opener element's width
+    */
     exports.toggleMenu = function(element, togglerElement = document.body, expandWidth = false) {
         if (element.getAttribute("sui-open") == "true") {
             exports.closeMenu(element);
@@ -105,6 +143,17 @@ namespace("com.subnodal.subui.menus", function(exports) {
         }
     };
 
+    /*
+        @name toggleContextMenu
+        Toggle whether the menu should be open as a context menu nearby the
+        mouse pointer.
+            ~~~~
+            It is recommneded that `togglerElement` is specified for
+            accessibility reasons. When the menu is closed using the Esc key on
+            the keyboard, focus will be returned to the toggler element.
+        @param element <Node> The menu node to toggle the opening of
+        @param togglerElement <Node = (global):document.body> The node of the element to focus if the menu is closed using the keyboard
+    */
     exports.toggleContextMenu = function(element, togglerElement = document.body) {
         element.returnElement = togglerElement;
 
@@ -113,14 +162,22 @@ namespace("com.subnodal.subui.menus", function(exports) {
         } else {
             exports.openMenuAtPosition(
                 element,
-                lastMouseY,
                 lastMouseX,
-                0,
-                document.body.getAttribute("dir") != "rtl" ? window.innerWidth - lastMouseX : lastMouseX
+                lastMouseY,
+                document.body.getAttribute("dir") != "rtl" ? window.innerWidth - lastMouseX : lastMouseX,
+                0
             );
         }
     };
 
+    /*
+        @name attachEvents
+        Attach all events to all menu elements.
+            ~~~~
+            This should only be called once. It is called when subUI is
+            initialised, which is usually when the document loads. All future
+            added menus will automatically be subject to the attached events.
+    */
     exports.attachEvents = function() {
         window.addEventListener("click", function(event) {
             if (ignoreNextCloseEvent) {
