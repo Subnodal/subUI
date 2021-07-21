@@ -69,6 +69,7 @@ sui-menu button {
     background-color: inherit;
     color: inherit;
     text-align: start;
+    border-radius: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -83,16 +84,6 @@ sui-menu button:hover:not(:disabled), sui-menu button:focus:focus-visible:not(:d
 sui-menu button:active:not(:disabled) {
     background-color: var(--menuSelectPress);
     color: var(--menuSelectText);
-}
-
-sui-menu button:not(:first-child) {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-
-sui-menu button:not(:last-child) {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
 }
 
 sui-menu button img {

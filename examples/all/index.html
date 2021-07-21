@@ -20,25 +20,36 @@
         </nav>
         <nav>
             <button sui-style="flat" aria-label="Back"><sui-icon sui-mirrorable aria-hidden="true">arrow_back</sui-icon></button>
-            <button sui-style="flat" aria-label="Forward"><sui-icon sui-mirrorable aria-hidden="true">arrow_forward</sui-icon></button>
+            <button sui-style="flat" sui-screen="desktop" aria-label="Forward"><sui-icon sui-mirrorable aria-hidden="true">arrow_forward</sui-icon></button>
             <sui-spacer></sui-spacer>
-            <button onclick="require('com.subnodal.subui.menus').toggleMenu(document.querySelector('#newItemMenu'), this);">
+            <button sui-screen="desktop" onclick="require('com.subnodal.subui.menus').toggleMenu(document.querySelector('#newItemMenu'), this);">
                 <sui-icon sui-mirrorable aria-hidden="true">add</sui-icon>
                 New
                 <sui-icon sui-mirrorable aria-hidden="true">arrow_drop_down</sui-icon>
             </button>
-            <sui-spacer sui-screen="desktop"></sui-spacer>
-            <input value="/home/user" sui-size="grow" sui-screen="desktop">
-            <sui-spacer sui-screen="desktop"></sui-spacer>
-            <sui-spacer sui-size="grow" sui-screen="mobile"></sui-spacer>
-            <button sui-style="flat" sui-screen="mobile" aria-label="Search"><sui-icon sui-mirrorable aria-hidden="true">search</sui-icon></button>
-            <button sui-style="flat" aria-label="Menu"><sui-icon sui-mirrorable aria-hidden="true">menu</sui-icon></button>
+            <sui-spacer></sui-spacer>
+            <ol sui-style="breadcrumbs" sui-size="grow">
+                <li><a href="#">My files</a></li>
+                <li><a href="#">Project work</a></li>
+                <li>Demos</li>
+            </ol>
+            <sui-spacer></sui-spacer>
+            <input type="search" placeholder="Search for files" sui-screen="wide" sui-size="smallest">
+            <sui-spacer></sui-spacer>
+            <button sui-screen="mobile" onclick="require('com.subnodal.subui.menus').toggleMenu(document.querySelector('#newItemMenu'), this);" title="New" aria-label="New">
+                <sui-icon sui-mirrorable aria-hidden="true">add</sui-icon>
+                <sui-icon sui-mirrorable aria-hidden="true">arrow_drop_down</sui-icon>
+            </button>
+            <button sui-style="flat" sui-screen="narrow" title="Search" aria-label="Search"><sui-icon sui-mirrorable aria-hidden="true">search</sui-icon></button>
+            <button sui-style="flat" sui-screen="desktop" title="Move to..." aria-label="Move to..."><sui-icon sui-mirrorable aria-hidden="true">drive_file_move</sui-icon></button>
+            <button sui-style="flat" sui-screen="desktop" title="Make a copy..." aria-label="Make a copy..."><sui-icon sui-mirrorable aria-hidden="true">file_copy</sui-icon></button>
+            <button sui-style="flat" sui-screen="desktop" title="Delete" aria-label="Delete"><sui-icon sui-mirrorable aria-hidden="true">delete</sui-icon></button>
         </nav>
         <main>
             <sui-panels>
                 <sui-content sui-stack="column">
                     <ul sui-iconlist sui-style="compact" sui-size="grow">
-                        <li tabindex="0" aria-selected="true">
+                        <li tabindex="0">
                             <img src="/media/account.svg">
                             <input tabindex="-1" value="hello.txt">
                             <span>1 January 2021</span>
@@ -149,6 +160,15 @@
             <button>Writer document</button>
             <button>Sigma spreadsheet</button>
             <button>Presenter presentation</button>
+        </sui-menu>
+        <sui-menu id="viewContextMenu">
+            <button><sui-icon aria-hidden="true">content_paste</sui-icon> Paste</button>
+        </sui-menu>
+        <sui-menu id="itemContextMenu">
+            <button><sui-icon aria-hidden="true">file_copy</sui-icon> Copy</button>
+            <button><sui-icon aria-hidden="true">content_paste</sui-icon> Paste</button>
+            <button><sui-icon aria-hidden="true">drive_file_move</sui-icon> Move to...</button>
+            <button><sui-icon aria-hidden="true">delete</sui-icon> Delete</button>
         </sui-menu>
     </body>
 </html>

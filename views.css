@@ -69,7 +69,7 @@ ul[sui-iconlist] li input + span, ul[sui-iconlist] li span + span {
 
 ul[sui-iconlist][sui-style~="compact"] li {
     position: relative;
-    width: 16rem;
+    width: 15rem;
     min-height: 3rem;
     text-align: start;
     vertical-align: top;

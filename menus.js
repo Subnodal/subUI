@@ -25,10 +25,10 @@ namespace("com.subnodal.subui.menus", function(exports) {
         @param y <Number> The Y position to situate the menu nearby
         @param padWidth <Number = 0> The width of any opener element which the menu should avoid obstructing
         @param padHeight <Number = 0> The height of any opener element which the menu should avoid obstructing
-        @param minWidth <Number = 0> The minimum width the menu should be; usually used to equally size the menu with relation to `select` elements
+        @param minWidth <Number = 200> The minimum width the menu should be; usually used to equally size the menu with relation to `select` elements
     */
-    exports.openMenuAtPosition = function(element, x, y, padWidth = 0, padHeight = 0, minWidth = 0) {
-        document.querySelectorAll("sui-menu[sui-role='select']").forEach((element) => exports.closeMenu(element));
+    exports.openMenuAtPosition = function(element, x, y, padWidth = 0, padHeight = 0, minWidth = 200) {
+        document.querySelectorAll("sui-menu").forEach((element) => exports.closeMenu(element));
 
         ignoreNextCloseEvent = true;
 
@@ -197,6 +197,11 @@ namespace("com.subnodal.subui.menus", function(exports) {
             if (event.key == "Escape") {
                 document.querySelectorAll("sui-menu").forEach((element) => exports.closeMenu(element));
             }
+        });
+
+        window.addEventListener("mouseover", function(event) {
+            lastMouseX = event.clientX;
+            lastMouseY = event.clientY;
         });
 
         window.addEventListener("mousemove", function(event) {

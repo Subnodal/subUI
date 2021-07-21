@@ -35,7 +35,7 @@ the keyboard, focus will be returned to the opener element.
 * **`y`** (`Number`): The Y position to situate the menu nearby
 * **`padWidth`** (`Number` = `0`): The width of any opener element which the menu should avoid obstructing
 * **`padHeight`** (`Number` = `0`): The height of any opener element which the menu should avoid obstructing
-* **`minWidth`** (`Number` = `0`): The minimum width the menu should be; usually used to equally size the menu with relation to `select` elements
+* **`minWidth`** (`Number` = `200`): The minimum width the menu should be; usually used to equally size the menu with relation to `select` elements
 
 ## ▶️ `toggleContextMenu`
 `function` · Toggle whether the menu should be open as a context menu nearby the mouse pointer.
