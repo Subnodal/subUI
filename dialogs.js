@@ -13,6 +13,11 @@ namespace("com.subnodal.subui.dialogs", function(exports) {
 
     var focusStack = [];
 
+    /*
+        @name open
+        Open the given dialog.
+        @param element <Node> The dialog node to open
+    */
     exports.open = function(element) {
         if (element.hasAttribute("open")) {
             return;
@@ -27,6 +32,11 @@ namespace("com.subnodal.subui.dialogs", function(exports) {
         element.removeAttribute("sui-open");
     };
 
+    /*
+        @name close
+        Close the given dialog.
+        @param element <Node> The dialog node to close
+    */
     exports.close = function(element) {
         if (!element.hasAttribute("open")) {
             return;
@@ -49,6 +59,15 @@ namespace("com.subnodal.subui.dialogs", function(exports) {
         }, 500);
     };
 
+    /*
+        @name attachEvents
+        Attach all events to all dialog elements.
+            ~~~~
+            This should only be called once. It is called when subUI is
+            initialised, which is usually when the document loads. Dialogs
+            should be pre-added to the DOM before initialisation to provide
+            better support for older browsers.
+    */
     exports.attachEvents = function() {
         document.querySelectorAll("dialog").forEach(function(element) {
             dialogPolyfill.registerDialog(element);
