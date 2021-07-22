@@ -187,6 +187,26 @@ main > sui-panels {
     height: calc(100% + 2rem);
 }
 
+sui-buttonrow {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-block-start: 0.5rem;
+    margin-block-end: 0.5rem;
+}
+
+sui-buttonrow button {
+    margin-inline-end: 0.5rem;
+}
+
+sui-buttonrow button:first-child {
+    margin-inline-end: 0;
+}
+
+sui-panels sui-panel sui-buttonrow:not(aside sui-buttonrow) {
+    margin: 0;
+    padding: 1rem;
+}
+
 @media (min-width: 1001px) {
     nav[sui-screen="narrow"] + nav {
         height: 3rem;
