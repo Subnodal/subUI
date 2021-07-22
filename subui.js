@@ -11,6 +11,7 @@
 namespace("com.subnodal.subui", function(exports) {
     var views = require("com.subnodal.subui.views");
     var menus = require("com.subnodal.subui.menus");
+    var dialogs = require("com.subnodal.subui.dialogs");
 
     /*
         @name autoInit
@@ -34,6 +35,7 @@ namespace("com.subnodal.subui", function(exports) {
     exports.init = function() {
         views.attachEvents();
         menus.attachEvents();
+        dialogs.attachEvents();
     };
 
     window.addEventListener("load", function() {

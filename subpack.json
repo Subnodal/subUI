@@ -5,6 +5,10 @@
         "hapticfeedback.js",
         "views.js",
         "menus.js",
+        "dialogs.js",
         "subui.js"
+    ],
+    "dependencies": [
+        "lib/dialog-polyfill.js"
     ]
 }

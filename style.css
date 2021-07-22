@@ -7,10 +7,14 @@
     Licenced by the Subnodal Open-Source Licence, which can be found at LICENCE.md.
 */
 
+@import url("lib/dialog-polyfill.css");
+
 @import url("theme.css");
+@import url("a11y.css");
 @import url("fonts.css");
 @import url("scrollbars.css");
 @import url("components.css");
 @import url("layout.css");
 @import url("views.css");
 @import url("menus.css");
+@import url("dialogs.css");

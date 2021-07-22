@@ -153,7 +153,7 @@
                         </div>
                     </aside>
                     <sui-buttonrow>
-                        <button>OK</button>
+                        <button onclick="openTestDialog();">OK</button>
                         <button sui-style="flat">Cancel</button>
                     </sui-buttonrow>
                 </sui-panel>
@@ -181,5 +181,12 @@
             <button sui-screen="desktop" onclick="selectAll();"><sui-icon aria-hidden="true">select_all</sui-icon> Select all</button>
             <button sui-screen="desktop" onclick="invertSelection();"><sui-icon aria-hidden="true"></sui-icon> Invert selection</button>
         </sui-menu>
+        <dialog id="testDialog">
+            <h1>Hello, world!</h1>
+            <p>This is a dialog.</p>
+            <sui-buttonrow>
+                <button sui-action="close">OK</button>
+            </sui-buttonrow>
+        </dialog>
     </body>
 </html>

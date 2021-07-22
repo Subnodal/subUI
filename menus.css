@@ -95,6 +95,13 @@ sui-menu button img {
     object-fit: contain;
 }
 
+@supports (backdrop-filter: blur(10px)) {
+    sui-menu {
+        background-color: var(--menuGlass);
+        backdrop-filter: blur(10px);
+    }
+}
+
 @media (max-width: 600px) {
     sui-menu {
         top: unset!important;

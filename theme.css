@@ -9,6 +9,7 @@
 
 :root {
     --background: white;
+    --backgroundGlass: rgba(255, 255, 255, 0.6);
     --foreground: black;
     --foregroundSubtle: #404040;
     --ui: #4688f2;
@@ -36,11 +37,15 @@
     --navInput: var(--uiInput);
     --navInputText: var(--uiInputText);
     --menu: var(--background);
+    --menuGlass: var(--backgroundGlass);
     --menuText: var(--foreground);
     --menuSelect: var(--navUiFlat);
     --menuSelectText: var(--navUiFlatText);
     --menuSelectHover: var(--navUiFlatHover);
     --menuSelectPress: var(--navUiFlatPress);
+    --dialog: var(--background);
+    --dialogGlass: var(--backgroundGlass);
+    --dialogText: var(--foreground);
     --scrollbar: rgba(0, 0, 0, 0.5);
     --scrollbarHover: rgba(0, 0, 0, 0.6);
     --scrollbarPress: rgba(0, 0, 0, 0.8);

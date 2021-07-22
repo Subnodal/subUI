@@ -1,6 +1,7 @@
 var elements = require("com.subnodal.subui.elements");
-var menus = require("com.subnodal.subui.menus");
 var views = require("com.subnodal.subui.views");
+var menus = require("com.subnodal.subui.menus");
+var dialogs = require("com.subnodal.subui.dialogs");
 
 function selectAll() {
     document.querySelectorAll("ul[sui-iconlist] li").forEach((element) => element.setAttribute("aria-selected", true));
@@ -14,6 +15,10 @@ function invertSelection() {
             element.setAttribute("aria-selected", true);
         }
     });
+}
+
+function openTestDialog() {
+    dialogs.open(document.querySelector("#testDialog"));
 }
 
 window.addEventListener("load", function() {

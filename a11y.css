@@ -1,0 +1,18 @@
+/*
+    subUI
+
+    Copyright (C) Subnodal Technologies. All Rights Reserved.
+
+    https://subnodal.com
+    Licenced by the Subnodal Open-Source Licence, which can be found at LICENCE.md.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        transition: none!important;
+    }
+
+    *::backdrop {
+        transition: none!important;
+    }
+}
