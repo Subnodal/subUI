@@ -18,6 +18,23 @@ namespace("com.subnodal.subui.hapticfeedback", function(exports) {
         `Array`), and the (2n+1)th term index is a rest duration time (the time
         to wait in-between each vibration). All times are in milliseconds.
     */
+    /*
+        @name vibrationFeedbackTimings.alert
+        @type var <[Number]>
+        Used for alerting the user to an issue with a simple vibration.
+    */
+    /*
+        @name vibrationFeedbackTimings.select
+        @type var <[Number]>
+        Used to provide feedback that an item has been selected. This vibration
+        is usually played when the user holds their finger on an item.
+    */
+    /*
+        @name vibrationFeedbackTimings.notify
+        @type var <[Number]>
+        Used to notify the user, in a familiar two-vibration notification
+        pattern.
+    */
     exports.vibrationFeedbackTimings = {
         alert: [500],
         select: [50],
