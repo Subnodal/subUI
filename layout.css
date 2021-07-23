@@ -11,6 +11,7 @@ html, body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    height: -webkit-fill-available;
     margin: 0;
     font-size: 16px;
     background-color: var(--background);
@@ -258,6 +259,10 @@ dialog sui-buttonrow:last-child {
 }
 
 @media (max-width: 600px) {
+    html, body {
+        font-size: 18px;
+    }
+
     nav sui-spacer:not([sui-size~="grow"]) {
         display: none;
     }

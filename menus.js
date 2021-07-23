@@ -29,20 +29,19 @@ namespace("com.subnodal.subui.menus", function(exports) {
     */
     exports.openMenuAtPosition = function(element, x, y, padWidth = 0, padHeight = 0, minWidth = 200) {
         document.querySelectorAll("sui-menu").forEach((element) => exports.closeMenu(element));
+        document.body.querySelectorAll("sui-backdrop").forEach((element) => element.remove());
 
         ignoreNextCloseEvent = true;
 
         clearTimeout(transitionTimeout);
 
-        if (document.body.querySelectorAll("sui-backdrop").length == 0) {
-            var backdrop = document.createElement("sui-backdrop");
+        var backdrop = document.createElement("sui-backdrop");
 
-            backdrop.addEventListener("click", function() {
-                ignoreNextCloseEvent = false;
-            });
+        backdrop.addEventListener("click", function() {
+            ignoreNextCloseEvent = false;
+        });
 
-            document.body.append(backdrop);
-        }
+        document.body.append(backdrop);
 
         element.setAttribute("sui-open", "fadeIn");
         element.querySelector("button")?.focus();

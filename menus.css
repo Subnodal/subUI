@@ -130,4 +130,10 @@ sui-menu button img {
     sui-menu[sui-open="true"] ~ sui-backdrop, sui-menu[sui-open="fadeIn"] ~ sui-backdrop, sui-menu[sui-open="fadeOut"] ~ sui-backdrop {
         display: block;
     }
+
+    sui-menu button {
+        height: unset;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
 }
