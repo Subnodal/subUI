@@ -447,7 +447,7 @@ namespace("com.subnodal.subui.views", function(exports) {
 
                 exports.selectListItem(itemsBelow[0]);
             } else if (event.key == "ArrowLeft") {
-                var previousItem = elements.findPreviousOfType(element, "ul[sui-iconlist] li");
+                var previousItem = elements.findPreviousOfType(element, "ul[sui-iconlist] li", true);
 
                 if (previousItem == null) {
                     return;
@@ -455,7 +455,7 @@ namespace("com.subnodal.subui.views", function(exports) {
 
                 exports.selectListItem(previousItem);
             } else if (event.key == "ArrowRight") {
-                var nextItem = elements.findNextOfType(element, "ul[sui-iconlist] li");
+                var nextItem = elements.findNextOfType(element, "ul[sui-iconlist] li", true);
 
                 if (nextItem == null) {
                     return;

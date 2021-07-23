@@ -9,6 +9,10 @@
 
 // @namespace com.subnodal.subui.elements
 namespace("com.subnodal.subui.elements", function(exports) {
+    exports.isVisible = function(element) {
+        return element.getClientRects().length > 0;
+    };
+
     /*
         @name findAncestor
         Find an ancestor of self element that matches the given selector.
@@ -33,8 +37,9 @@ namespace("com.subnodal.subui.elements", function(exports) {
         matches the given selector.
         @param element <Node> The element node to find using
         @param selector <String> The query selector to match the previous type of
+        @param mustBeVisible <Boolean = false> Whether the instance must be visible and interactable
     */
-    exports.findPreviousOfType = function(element, selector) {
+    exports.findPreviousOfType = function(element, selector, mustBeVisible = false) {
         while (true) {
             element = element.previousSibling;
 
@@ -43,6 +48,10 @@ namespace("com.subnodal.subui.elements", function(exports) {
             }
 
             if (element.nodeType != Node.ELEMENT_NODE) {
+                continue;
+            }
+
+            if (mustBeVisible && !exports.isVisible(element)) {
                 continue;
             }
 
@@ -58,8 +67,9 @@ namespace("com.subnodal.subui.elements", function(exports) {
         matches the given selector.
         @param element <Node> The element node to find using
         @param selector <String> The query selector to match the next type of
+        @param mustBeVisible <Boolean = false> Whether the instance must be visible and interactable
     */
-    exports.findNextOfType = function(element, selector) {
+    exports.findNextOfType = function(element, selector, mustBeVisible = false) {
         while (true) {
             element = element.nextSibling;
 
@@ -68,6 +78,10 @@ namespace("com.subnodal.subui.elements", function(exports) {
             }
 
             if (element.nodeType != Node.ELEMENT_NODE) {
+                continue;
+            }
+
+            if (mustBeVisible && !exports.isVisible(element)) {
                 continue;
             }
 

@@ -230,12 +230,12 @@ namespace("com.subnodal.subui.menus", function(exports) {
 
             if (event.key == "ArrowUp") {
                 (
-                    elements.findPreviousOfType(element, "button:not(:disabled)") ||
+                    elements.findPreviousOfType(element, "button:not(:disabled)", true) ||
                     element.parentNode.querySelector("button:not(:disabled):last-child")
                 ).focus();
             } else if (event.key == "ArrowDown") {
                 (
-                    elements.findNextOfType(element, "button:not(:disabled)") ||
+                    elements.findNextOfType(element, "button:not(:disabled)", true) ||
                     element.parentNode.querySelector("button:not(:disabled):first-child")
                 ).focus();
             } else if (event.key == "Tab") {

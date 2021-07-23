@@ -20,6 +20,7 @@
 **Parameters:**
 * **`element`** (`Node`): The element node to find using
 * **`selector`** (`String`): The query selector to match the next type of
+* **`mustBeVisible`** (`Boolean` = `false`): Whether the instance must be visible and interactable
 
 ## ▶️ `findPreviousOfType`
 `function` · Find the previous instance of an element before the given element which matches the given selector.
@@ -27,3 +28,4 @@
 **Parameters:**
 * **`element`** (`Node`): The element node to find using
 * **`selector`** (`String`): The query selector to match the previous type of
+* **`mustBeVisible`** (`Boolean` = `false`): Whether the instance must be visible and interactable
