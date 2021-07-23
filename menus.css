@@ -86,7 +86,7 @@ sui-menu button:focus:not(:disabled) {
     color: var(--menuSelectText);
 }
 
-sui-menu button:focus:not(:focus-visible):not(:disabled) {
+sui-menu button:focus:not(:focus-visible):not(:hover):not(:disabled) {
     background-color: inherit;
     color: inherit;
 }
