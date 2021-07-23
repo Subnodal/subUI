@@ -98,8 +98,9 @@ ul[sui-iconlist][sui-style~="compact"] li input:last-child, ul[sui-iconlist][sui
 ul[sui-iconlist][sui-style~="compact"] li span, ul[sui-iconlist][sui-style~="linear"] li span {
     display: block;
     width: calc(100% - 32px - 1rem);
-    padding: 0.1rem;
     margin-inline-start: calc(32px + 1rem);
+    padding: 0.1rem;
+    font-size: 0.9rem;
     text-align: start;
     overflow: auto;
     text-overflow: ellipsis;
@@ -110,10 +111,14 @@ ul[sui-iconlist][sui-style~="compact"] li span:nth-child(2):last-child, ul[sui-i
     margin-block-start: 0.7rem;
 }
 
-ul[sui-iconlist][sui-style~="compact"] li:not([aria-selected="true"]:not([sui-mode="single"] [aria-selected="true"] ~ *)) input + span,
-ul[sui-iconlist][sui-style~="compact"] li:not([aria-selected="true"]:not([sui-mode="single"] [aria-selected="true"] ~ *)) span + span,
-ul[sui-iconlist][sui-style~="linear"] li:not([aria-selected="true"]:not([sui-mode="single"] [aria-selected="true"] ~ *)) input + span,
-ul[sui-iconlist][sui-style~="linear"] li:not([aria-selected="true"]:not([sui-mode="single"] [aria-selected="true"] ~ *)) span + span
+ul[sui-iconlist] li input + span,
+ul[sui-iconlist] li span + span
+{
+    font-size: 0.8rem!important;
+}
+
+ul[sui-iconlist] li:not([aria-selected="true"]:not([sui-mode="single"] [aria-selected="true"] ~ *)) input + span,
+ul[sui-iconlist] li:not([aria-selected="true"]:not([sui-mode="single"] [aria-selected="true"] ~ *)) span + span
 {
     color: var(--foregroundSubtle);
 }
@@ -123,13 +128,14 @@ ul[sui-iconlist][sui-style~="compact"] li span + span, ul[sui-iconlist][sui-styl
 }
 
 ul[sui-iconlist][sui-style~="linear"] li {
-    width: 100%;
+    display: block;
+    width: calc(100% - 4px);
 }
 
 @media (max-width: 600px) {
     ul[sui-iconlist] li {
         display: block;
-        width: calc(100% - 0.2rem)!important;
+        width: calc(100% - 4px)!important;
         min-height: 3rem;
         text-align: start;
         font-size: 0.8rem;

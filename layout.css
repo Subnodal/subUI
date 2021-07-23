@@ -213,6 +213,12 @@ dialog sui-buttonrow:last-child {
     margin-block-end: 0;
 }
 
+sui-workarea {
+    display: block;
+    height: 40vh;
+    overflow: auto;
+}
+
 @media (min-width: 1001px) {
     nav[sui-screen="narrow"] + nav {
         height: 3rem;
