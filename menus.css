@@ -73,12 +73,27 @@ sui-menu button {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    outline: none!important;
 }
 
-sui-menu button:hover:not(:disabled), sui-menu button:focus:focus-visible:not(:disabled) {
+sui-menu button:hover:not(:disabled) {
     background-color: var(--menuSelectHover);
     color: var(--menuSelectText);
-    outline: none;
+}
+
+sui-menu button:focus:not(:disabled) {
+    background-color: var(--menuSelectHover);
+    color: var(--menuSelectText);
+}
+
+sui-menu button:focus:not(:focus-visible):not(:disabled) {
+    background-color: inherit;
+    color: inherit;
+}
+
+sui-menu button:focus:focus-visible:not(:disabled) {
+    background-color: var(--menuSelectHover);
+    color: var(--menuSelectText);
 }
 
 sui-menu button:active:not(:disabled) {

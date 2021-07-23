@@ -19,6 +19,7 @@ html, body {
 
 main, aside {
     flex-grow: 1;
+    height: 100%;
     padding: 1rem;
     overflow: auto;
 }
@@ -64,8 +65,8 @@ nav[sui-style~="thick"] > button[sui-style~="circular"] {
 }
 
 nav span:not(button span), nav ol[sui-style~="breadcrumbs"] {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 nav img {
@@ -129,8 +130,8 @@ nav[sui-style~="thick"] button, nav[sui-style~="thick"] input, nav[sui-style~="t
 }
 
 nav[sui-style="thick"] span {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 sui-spacer {
