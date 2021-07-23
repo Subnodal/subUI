@@ -24,6 +24,10 @@ added views will automatically be subject to the attached events.
 ## ▶️ `deselectList`
 `function` · Deselect all items from a list, triggering any event callbacks.
 
+
+The deselection will be forced to cancel if the list's `sui-mode`
+attribute contains the `"nonEmptyChoice"` token.
+
 **Parameters:**
 * **`element`** (`Node`): The list node to deselect the items in
 
@@ -94,7 +98,7 @@ added views will automatically be subject to the attached events.
 
 
 The selection mode to use will be forced to `selectionModes.SINGLE`
-if the list's `sui-mode` attribute is `"single"`.
+if the list's `sui-mode` attribute contains the `"single"` token.
 
 **Parameters:**
 * **`element`** (`Node`): The item node to select

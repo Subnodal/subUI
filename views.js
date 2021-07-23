@@ -82,7 +82,7 @@ namespace("com.subnodal.subui.views", function(exports) {
         triggering any event callbacks.
             ~~~~
             The selection mode to use will be forced to `selectionModes.SINGLE`
-            if the list's `sui-mode` attribute is `"single"`.
+            if the list's `sui-mode` attribute contains the `"single"` token.
         @param element <Node> The item node to select
         @param selectionMode <selectionModes = selectionMode> The mode to use when deciding the outcome of selection
     */
@@ -91,7 +91,7 @@ namespace("com.subnodal.subui.views", function(exports) {
         var selectBefore = false;
         var selectBeforeFoundElement = false;
 
-        if (list.getAttribute("sui-mode") == "single") {
+        if (list.getAttribute("sui-mode")?.split(" ").includes("single")) {
             selectionMode = exports.selectionModes.SINGLE;
         }
 
@@ -174,9 +174,16 @@ namespace("com.subnodal.subui.views", function(exports) {
     /*
         @name deselectList
         Deselect all items from a list, triggering any event callbacks.
+            ~~~~
+            The deselection will be forced to cancel if the list's `sui-mode`
+            attribute contains the `"nonEmptyChoice"` token.
         @param element <Node> The list node to deselect the items in
     */
     exports.deselectList = function(element) {
+        if (element.getAttribute("sui-mode")?.split(" ").includes("nonEmptyChoice")) {
+            return;
+        }
+
         element.querySelectorAll("li").forEach(function(item) {
             item.removeAttribute("aria-selected");
         });
