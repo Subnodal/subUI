@@ -549,3 +549,53 @@ sui-loader::after {
         transform: rotate(180deg);
     }
 }
+
+@media (prefers-color-scheme: dark) {
+    input[type="search"] {
+        background: url("/media/icons/search-dark.svg") no-repeat left var(--uiInput);
+        background-size: 1.2rem;
+    }
+    
+    input[type="search"]::-webkit-search-cancel-button {
+        background: url("/media/icons/cancel-dark.svg") no-repeat;
+        background-position: center;
+        background-size: 1.2rem;
+    }
+    
+    input[type="checkbox"]:not([role="switch"]):checked::after {
+        background: url("/media/icons/checkmark-dark.svg") no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+    
+    input[type="checkbox"]:indeterminate::after {
+        background: url("/media/icons/indeterminate-dark.svg") no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+    
+    input[type="checkbox"][role="switch"]:checked::after {
+        background-color: var(--uiText);
+    }
+    
+    input[type="radio"]:checked::after {
+        background: url("/media/icons/bullet-dark.svg") no-repeat;
+        background-size: 66%;
+        background-position: center;
+    }
+    
+    select {
+        background: url("/media/icons/dropdown-dark.svg") no-repeat right var(--uiInput);
+        background-size: 1.2rem;
+    }
+    
+    ol[sui-style~="breadcrumbs"] li:not(:last-child) {
+        background: url("/media/icons/breadcrumbRight-dark.svg") no-repeat right transparent;
+        background-size: 1rem;
+    }
+    
+    [dir="rtl"] ol[sui-style~="breadcrumbs"] li:not(:last-child) {
+        background: url("/media/icons/breadcrumbLeft-dark.svg") no-repeat left transparent;
+        background-size: 1rem;
+    }
+}
