@@ -50,3 +50,21 @@
     --scrollbarHover: rgba(0, 0, 0, 0.6);
     --scrollbarPress: rgba(0, 0, 0, 0.8);
 }
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #1e1e1e;
+        --backgroundGlass: rgba(30, 30, 30, 0.7);
+        --foreground: white;
+        --foregroundSubtle: #bfbfbf;
+        --uiInput: #1a1a1a;
+        --uiInputText: white;
+        --panel: #070707;
+        --panelText: white;
+        --navUiFlatHover: rgba(255, 255, 255, 0.1);
+        --navUiFlatPress: rgba(255, 255, 255, 0.2);
+        --scrollbar: rgba(255, 255, 255, 0.5);
+        --scrollbarHover: rgba(255, 255, 255, 0.6);
+        --scrollbarPress: rgba(255, 255, 255, 0.8);
+    }
+}

@@ -14,7 +14,6 @@ html, body {
     height: -webkit-fill-available;
     margin: 0;
     font-size: 16px;
-    background-color: var(--background);
     color: var(--foreground);
 }
 
@@ -23,6 +22,14 @@ main, aside {
     height: 100%;
     padding: 1rem;
     overflow: auto;
+}
+
+main {
+    background-color: var(--background);
+}
+
+body[sui-target="subos"] main {
+    border-radius: 5px;
 }
 
 nav {
@@ -35,6 +42,10 @@ nav {
     background-color: var(--nav);
     color: var(--navText);
     overflow: hidden;
+}
+
+body[sui-target="subos"] nav {
+    background-color: transparent; /* Use window rendering as background */
 }
 
 nav + nav {

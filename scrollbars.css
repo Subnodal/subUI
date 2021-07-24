@@ -8,18 +8,18 @@
 }
  
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--scrollbar);
     border-radius: 1rem;
-    border: 0.5rem solid rgba(0, 0, 0, 0);
+    border: 0.5rem solid transparent;
     background-clip: padding-box;
 }
  
 ::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: var(--scrollbarHover);
 }
  
 ::-webkit-scrollbar-thumb:active {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--scrollbarPress);
 }
  
 ::-webkit-scrollbar-track {
