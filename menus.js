@@ -43,6 +43,13 @@ namespace("com.subnodal.subui.menus", function(exports) {
 
         document.body.append(backdrop);
 
+        var focusNodeClone = document.activeElement.cloneNode(true);
+
+        focusNodeClone.querySelectorAll("[aria-hidden='true']").forEach((element) => element.remove());
+
+        element.setAttribute("role", "dialog");
+        element.setAttribute("aria-label", focusNodeClone.textContent.trim());
+
         element.setAttribute("sui-open", "fadeIn");
         element.querySelector("button")?.focus();
 
