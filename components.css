@@ -60,7 +60,7 @@ body:not([sui-target="web"]) * {
     outline: 2px solid black;
 }
 
-input:not([type="checkbox"]):focus {
+input:not([type="checkbox"]):focus, textarea:focus {
     outline: none;
 }
 
@@ -215,7 +215,7 @@ label[sui-style="switch"] {
     margin-block-start: 0;
 }
 
-label + input, label + select {
+label + input, label + select, label + textarea, label + progress {
     display: block;
     width: 100%;
     max-width: 30rem;
@@ -239,7 +239,7 @@ input[type="checkbox"][role="switch"] + label {
     vertical-align: top;
 }
 
-input, select {
+input, select, textarea {
     height: 2rem;
     padding: 0.5rem;
     padding-inline-start: 0.6rem;
@@ -253,7 +253,7 @@ input, select {
     user-select: unset;
 }
 
-input {
+input, textarea {
     cursor: text!important;
     user-select: text!important;
 }
@@ -374,6 +374,52 @@ input[type="checkbox"]:focus:focus-visible, input[type="radio"]:focus:focus-visi
     outline: 2px solid black;
 }
 
+input[type="range"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 0;
+    padding: 0;
+    padding-block-start: 0.4rem;
+    padding-block-end: 0.4rem;
+    background-color: var(--uiInput);
+    cursor: default!important;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: var(--ui);
+    border-radius: 50%;
+    transition: 0.5s background-color;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    background-color: var(--uiHover);
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+    background-color: var(--uiPress);
+}
+
+input[type="range"]::-moz-slider-thumb {
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: var(--ui);
+    border-radius: 50%;
+    transition: 0.5s background-color;
+}
+
+input[type="range"]::-moz-slider-thumb:hover {
+    background-color: var(--uiHover);
+}
+
+input[type="range"]::-moz-slider-thumb:active {
+    background-color: var(--uiPress);
+}
+
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -391,6 +437,20 @@ select {
 
 select:not(:focus-visible) {
     outline: none;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+}
+
+textarea[sui-style~="large"] {
+    height: 150px;
+}
+
+textarea[sui-style~="resizable"] {
+    resize: vertical;
 }
 
 img[sui-style~="profile"] {
@@ -433,6 +493,32 @@ ol[sui-style~="breadcrumbs"] li a {
 
 ol[sui-style~="breadcrumbs"] li a:hover {
     text-decoration: inherit;
+}
+
+progress {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 0.8rem;
+    padding: 0;
+    overflow: hidden;
+}
+
+progress::-webkit-progress-bar {
+    background-color: var(--uiInput);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+progress::-webkit-progress-value {
+    background-color: var(--ui);
+    border-radius: 10px;
+    transition: width 0.5s;
+}
+
+progress::-moz-progress-bar {
+    background-color: var(--ui);
+    border-radius: 10px;
 }
 
 sui-icon {

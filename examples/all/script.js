@@ -39,4 +39,8 @@ window.addEventListener("load", function() {
 
         menus.toggleContextMenu(document.getElementById("itemContextMenu"), element);
     });
+
+    document.querySelector("#exampleSlider").addEventListener("change", function(event) {
+        document.querySelector("#exampleProgress").value = event.target.value / 100;
+    });
 });
