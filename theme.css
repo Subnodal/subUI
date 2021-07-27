@@ -67,6 +67,7 @@
         --panelText: white;
         --navUiFlatHover: rgba(255, 255, 255, 0.1);
         --navUiFlatPress: rgba(255, 255, 255, 0.2);
+        --handleGrab: rgba(255, 255, 255, 0.4);
         --scrollbar: rgba(255, 255, 255, 0.5);
         --scrollbarHover: rgba(255, 255, 255, 0.6);
         --scrollbarPress: rgba(255, 255, 255, 0.8);
