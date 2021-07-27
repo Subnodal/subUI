@@ -53,7 +53,10 @@ namespace("com.subnodal.subui.handles", function(exports) {
 
             if (currentHandle.getAttribute("sui-mode") == "vertical") {
                 resizeTarget.style.height = `${resizeTarget.getBoundingClientRect().height - (lastMouseX - event.clientY)}px`;
-            } else if (document.body.dir == "rtl") {
+            } else if (
+                (currentHandle.getAttribute("sui-target") != "next" && document.body.dir == "rtl") ||
+                (currentHandle.getAttribute("sui-target") == "next" && document.body.dir != "rtl")
+            ) {
                 resizeTarget.style.width = `${resizeTarget.getBoundingClientRect().width + (lastMouseX - event.clientX)}px`;
             } else {
                 resizeTarget.style.width = `${resizeTarget.getBoundingClientRect().width - (lastMouseX - event.clientX)}px`;
