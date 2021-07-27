@@ -6,6 +6,7 @@
         "views.js",
         "menus.js",
         "dialogs.js",
+        "handles.js",
         "subui.js"
     ],
     "dependencies": [

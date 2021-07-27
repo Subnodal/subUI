@@ -187,6 +187,7 @@ sui-panels sui-panel {
     flex-direction: column;
     flex-shrink: 0;
     width: 300px;
+    max-width: 40%;
     background-color: var(--panel);
     color: var(--panelText);
     border-radius: 5px;
@@ -200,6 +201,33 @@ sui-panels sui-panel nav {
 
 sui-panels sui-panel aside {
     overflow: auto;
+}
+
+sui-panels sui-panel aside p:first-child {
+    margin-block-start: 0;
+}
+
+sui-panels sui-panel aside p:last-child {
+    margin-block-end: 0;
+}
+
+sui-panels sui-panel[sui-style~="flat"] {
+    background-color: inherit;
+    color: inherit;
+}
+
+sui-panels sui-panel nav[sui-style~="flat"] {
+    background-color: var(--nav);
+    color: var(--navText);
+    border-radius: 5px;
+}
+
+sui-panels sui-panel[sui-style~="defaultHandleCollapsed"] {
+    width: 0;
+}
+
+sui-panels sui-panel[sui-style~="thin"] {
+    width: 200px;
 }
 
 sui-panels sui-content {
@@ -242,6 +270,59 @@ sui-workarea {
     display: block;
     height: 40vh;
     overflow: auto;
+}
+
+sui-handle {
+    position: relative;
+    width: 0.5rem;
+    margin-block-start: 0.5rem;
+    margin-block-end: 0.5rem;
+    background-color: var(--handle);
+    border-radius: 0.25rem;
+    cursor: ew-resize!important;
+    transition: 0.5s background-color;
+}
+
+sui-handle:hover {
+    background-color: var(--handleHover);
+}
+
+sui-handle::after {
+    position: absolute;
+    display: block;
+    width: 80%;
+    height: 2rem;
+    top: calc(50% - 1rem);
+    bottom: calc(50% - 1rem);
+    left: 10%;
+    right: 10%;
+    background-color: var(--handleGrab);
+    border-radius: 0.25rem;
+    content: "";
+    transition: 0.5s background-color;
+}
+
+sui-handle:hover::after {
+    background-color: var(--handleGrabHover);
+}
+
+sui-handle[sui-mode="vertical"] {
+    width: unset;
+    height: 0.5rem;
+    margin-block-start: unset;
+    margin-block-end: unset;
+    margin-inline-start: 0.5rem;
+    margin-inline-end: 0.5rem;
+    cursor: ns-resize!important;
+}
+
+sui-handle[sui-mode="vertical"]::after {
+    width: 2rem;
+    height: 80%;
+    top: 10%;
+    bottom: 10%;
+    left: calc(50% - 1rem);
+    right: calc(50% - 1rem);
 }
 
 @media (min-width: 1001px) {
@@ -323,6 +404,7 @@ sui-workarea {
     sui-panels > sui-panel {
         flex-shrink: 1;
         width: calc(100% - 1rem);
+        max-width: unset;
     }
 
     [sui-screen="desktop"] {
