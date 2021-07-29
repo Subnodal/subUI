@@ -695,7 +695,7 @@ sui-loader[sui-style="cover"] {
     }
 
     details summary::before {
-        background: url("media/icons/breadcrumbRight.svg") center no-repeat;
+        background: url("media/icons/breadcrumbRight-dark.svg") center no-repeat;
         background-size: contain;
     }
 }
