@@ -261,13 +261,13 @@ input, textarea {
 input[type="search"] {
     -webkit-appearance: textfield;
     padding-inline-start: 1.5rem;
-    background: url("/media/icons/search.svg") no-repeat left var(--uiInput);
+    background: url("media/icons/search.svg") no-repeat left var(--uiInput);
     background-size: 1.2rem;
     border-inline-start: 0.5rem solid transparent;
 }
 
 [dir="rtl"] input[type="search"] {
-    background: url("/media/icons/search.svg") no-repeat right var(--uiInput);
+    background: url("media/icons/search.svg") no-repeat right var(--uiInput);
     background-size: 1.2rem;
 }
 
@@ -276,7 +276,7 @@ input[type="search"]::-webkit-search-cancel-button {
     width: 1.2rem;
     height: 1.2rem;
     margin: 0;
-    background: url("/media/icons/cancel.svg") no-repeat;
+    background: url("media/icons/cancel.svg") no-repeat;
     background-position: center;
     background-size: 1.2rem;
 }
@@ -339,13 +339,13 @@ input[type="checkbox"]:not([role="switch"]):checked::after, input[type="checkbox
 }
 
 input[type="checkbox"]:not([role="switch"]):checked::after {
-    background: url("/media/icons/checkmark.svg") no-repeat;
+    background: url("media/icons/checkmark.svg") no-repeat;
     background-size: contain;
     background-position: center;
 }
 
 input[type="checkbox"]:indeterminate::after {
-    background: url("/media/icons/indeterminate.svg") no-repeat;
+    background: url("media/icons/indeterminate.svg") no-repeat;
     background-size: contain;
     background-position: center;
 }
@@ -357,7 +357,7 @@ input[type="checkbox"][role="switch"]:checked::after {
 }
 
 input[type="radio"]:checked::after {
-    background: url("/media/icons/bullet.svg") no-repeat;
+    background: url("media/icons/bullet.svg") no-repeat;
     background-size: 66%;
     background-position: center;
 }
@@ -425,13 +425,13 @@ select {
     -moz-appearance: none;
     appearance: none;
     padding-inline-end: 1.5rem;
-    background: url("/media/icons/dropdown.svg") no-repeat right var(--uiInput);
+    background: url("media/icons/dropdown.svg") no-repeat right var(--uiInput);
     background-size: 1.2rem;
     border-inline-end: 0.5rem solid transparent;
 }
 
 [dir="rtl"] select {
-    background: url("/media/icons/dropdown.svg") no-repeat left var(--uiInput);
+    background: url("media/icons/dropdown.svg") no-repeat left var(--uiInput);
     background-size: 1.2rem;
 }
 
@@ -472,12 +472,12 @@ ol[sui-style~="breadcrumbs"] li {
 
 ol[sui-style~="breadcrumbs"] li:not(:last-child) {
     padding-inline-end: 1.2rem;
-    background: url("/media/icons/breadcrumbRight.svg") no-repeat right transparent;
+    background: url("media/icons/breadcrumbRight.svg") no-repeat right transparent;
     background-size: 1rem;
 }
 
 [dir="rtl"] ol[sui-style~="breadcrumbs"] li:not(:last-child) {
-    background: url("/media/icons/breadcrumbLeft.svg") no-repeat left transparent;
+    background: url("media/icons/breadcrumbLeft.svg") no-repeat left transparent;
     background-size: 1rem;
 }
 
@@ -519,6 +519,68 @@ progress::-webkit-progress-value {
 progress::-moz-progress-bar {
     background-color: var(--ui);
     border-radius: 10px;
+}
+
+details {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+details summary {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    list-style: none;
+}
+
+details summary::before {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin-inline-end: 0.5rem;
+    background: url("media/icons/breadcrumbRight.svg") center no-repeat;
+    background-size: contain;
+    color: transparent;
+    transform: rotate(0deg);
+    vertical-align: top;
+    transition: 0.5s transform;
+    content: "";
+}
+
+details[open] > summary::before {
+    transform: rotate(90deg);
+}
+
+[sui-style="tree"] details {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+[sui-style="tree"] summary {
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+details[sui-style="tree"][open] > summary, [sui-style="tree"] details[open] > summary {
+    padding-bottom: 0.5rem;
+}
+
+[sui-style="tree"] ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+[sui-style="tree"] ul li {
+    margin-inline-start: 2.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+[sui-style="tree"] ul li details {
+    margin-inline-start: -1.5rem;
 }
 
 sui-icon {
@@ -585,24 +647,24 @@ sui-loader[sui-style="cover"] {
 
 @media (prefers-color-scheme: dark) {
     input[type="search"] {
-        background: url("/media/icons/search-dark.svg") no-repeat left var(--uiInput);
+        background: url("media/icons/search-dark.svg") no-repeat left var(--uiInput);
         background-size: 1.2rem;
     }
     
     input[type="search"]::-webkit-search-cancel-button {
-        background: url("/media/icons/cancel-dark.svg") no-repeat;
+        background: url("media/icons/cancel-dark.svg") no-repeat;
         background-position: center;
         background-size: 1.2rem;
     }
     
     input[type="checkbox"]:not([role="switch"]):checked::after {
-        background: url("/media/icons/checkmark-dark.svg") no-repeat;
+        background: url("media/icons/checkmark-dark.svg") no-repeat;
         background-size: contain;
         background-position: center;
     }
     
     input[type="checkbox"]:indeterminate::after {
-        background: url("/media/icons/indeterminate-dark.svg") no-repeat;
+        background: url("media/icons/indeterminate-dark.svg") no-repeat;
         background-size: contain;
         background-position: center;
     }
@@ -612,23 +674,28 @@ sui-loader[sui-style="cover"] {
     }
     
     input[type="radio"]:checked::after {
-        background: url("/media/icons/bullet-dark.svg") no-repeat;
+        background: url("media/icons/bullet-dark.svg") no-repeat;
         background-size: 66%;
         background-position: center;
     }
     
     select {
-        background: url("/media/icons/dropdown-dark.svg") no-repeat right var(--uiInput);
+        background: url("media/icons/dropdown-dark.svg") no-repeat right var(--uiInput);
         background-size: 1.2rem;
     }
     
     ol[sui-style~="breadcrumbs"] li:not(:last-child) {
-        background: url("/media/icons/breadcrumbRight-dark.svg") no-repeat right transparent;
+        background: url("media/icons/breadcrumbRight-dark.svg") no-repeat right transparent;
         background-size: 1rem;
     }
     
     [dir="rtl"] ol[sui-style~="breadcrumbs"] li:not(:last-child) {
-        background: url("/media/icons/breadcrumbLeft-dark.svg") no-repeat left transparent;
+        background: url("media/icons/breadcrumbLeft-dark.svg") no-repeat left transparent;
         background-size: 1rem;
+    }
+
+    details summary::before {
+        background: url("media/icons/breadcrumbRight.svg") center no-repeat;
+        background-size: contain;
     }
 }

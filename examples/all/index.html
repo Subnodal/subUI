@@ -49,7 +49,20 @@
             <sui-panels>
                 <sui-panel sui-screen="wide" sui-style="thin flat">
                     <aside>
-                        <p>Example panel (flat, resizable)</p>
+                        <details sui-style="tree">
+                            <summary>My files</summary>
+                            <ul>
+                                <li>
+                                    <details>
+                                        <summary>Project work</summary>
+                                        <ul>
+                                            <li>Test</li>
+                                        </ul>
+                                    </details>
+                                </li>
+                                <li>Test</li>
+                            </ul>
+                        </details>
                     </aside>
                 </sui-panel>
                 <sui-handle sui-screen="wide"></sui-handle>
