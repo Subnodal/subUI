@@ -15,6 +15,7 @@ namespace("com.subnodal.subui.views", function(exports) {
     var lastSelectedElement = null;
     var listSelectEvents = [];
     var listItemOpenEvents = [];
+    var treeSelectEvents = [];
     var lastTouchTime = null;
 
     class ElementEvent { 
@@ -322,6 +323,71 @@ namespace("com.subnodal.subui.views", function(exports) {
     };
 
     /*
+        @name selectTreeItem
+        Select an item from a tree, and present the selection to the user,
+        triggering any event callbacks.
+        @param element <Node> The item node to select
+    */
+    exports.selectTreeItem = function(element) {
+        var tree = elements.findAncestor(element, "ul[sui-tree]");
+
+        console.log(element);
+
+        tree.querySelectorAll("li").forEach(function(item) {
+            item.removeAttribute("aria-selected");
+        });
+
+        element.setAttribute("aria-selected", true);
+
+        treeSelectEvents.forEach(function(elementEvent) {
+            if (elementEvent.element == tree) {
+                elementEvent.callback();
+            }
+        });
+    };
+
+    /*
+        @name getSelectedTreeItem
+        Get the currently-selected tree item node.
+        @param element <Node> The tree node to get the selected item of
+        @returns <Node | null> The currently-selected tree item
+    */
+    exports.getSelectedTreeItem = function(element) {
+        return element.querySelector("li[aria-selected='true']") || null;
+    };
+
+    /*
+        @name getSelectedTreeItemId
+        Get the identifier of the currently-selected tree item from a tree.
+        @param element <Node> The tree node to get the selected item of
+        @returns <String | null> The currently-selected tree item identifier
+    */
+    exports.getSelectedTreeItemId = function(element) {
+        return exports.getSelectedTreeItem(element)?.querySelector("> details > select, > span").getAttribute("id");
+    };
+
+    /*
+        @name getSelectedTreeItemName
+        Get the name of the currently-selected tree item from a tree.
+        @param element <Node> The tree node to get the selected item of
+        @returns <[String | null]> The currently-selected tree item name
+    */
+    exports.getSelectedTreeItemName = function(element) {
+        return exports.getSelectedTreeItem(element)?.querySelector("> details > select, > span").textContent;
+    };
+
+    /*
+        @name attachTreeSelectEvent
+        Attach an event callback to a tree which triggers whenever an item in
+        the tree is selected.
+        @param element <Node> The tree node to attach the event to
+        @param callback <Function> The callback function to call when the event is triggered
+    */
+    exports.attachTreeSelectEvent = function(element, callback) {
+        treeSelectEvents.push(new ElementEvent(element, callback));
+    };
+
+    /*
         @name attachEvents
         Attach all events to all view elements.
             ~~~~
@@ -480,6 +546,16 @@ namespace("com.subnodal.subui.views", function(exports) {
                 renameField.select();
             } else if (event.key == "Escape") {
                 exports.deselectList(list);
+            }
+        });
+
+        elements.attachSelectorEvent("click", "ul[sui-tree] li", function(element, event) {
+            exports.selectTreeItem(element);
+        });
+
+        elements.attachSelectorEvent("keydown", "ul[sui-tree] li > span", function(element, event) {
+            if (event.key == "Enter" || event.key == " ") {
+                exports.selectTreeItem(element.parentNode);
             }
         });
     };

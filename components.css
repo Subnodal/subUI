@@ -49,7 +49,7 @@ body:not([sui-target="web"]) * {
 }
 
 *:focus {
-    outline: 2px solid black;
+    outline: 2px solid var(--focusRing);
 }
 
 *:focus:not(:focus-visible) {
@@ -57,7 +57,7 @@ body:not([sui-target="web"]) * {
 }
 
 *:focus-visible {
-    outline: 2px solid black;
+    outline: 2px solid var(--focusRing);
 }
 
 input:not([type="checkbox"]):focus, textarea:focus {
@@ -363,7 +363,7 @@ input[type="radio"]:checked::after {
 }
 
 input[type="checkbox"]:focus, input[type="radio"]:focus {
-    outline: 2px solid black;
+    outline: 2px solid var(--focusRing);
 }
 
 input[type="checkbox"]:focus:not(:focus-visible), input[type="radio"]:focus:not(:focus-visible) {
@@ -371,7 +371,7 @@ input[type="checkbox"]:focus:not(:focus-visible), input[type="radio"]:focus:not(
 }
 
 input[type="checkbox"]:focus:focus-visible, input[type="radio"]:focus:focus-visible {
-    outline: 2px solid black;
+    outline: 2px solid var(--focusRing);
 }
 
 input[type="range"] {
@@ -547,6 +547,14 @@ details summary::before {
 }
 
 details[open] > summary::before {
+    transform: rotate(90deg);
+}
+
+[dir="rtl"] details summary::before {
+    transform: rotate(180deg);
+}
+
+[dir="rtl"] details[open] > summary::before {
     transform: rotate(90deg);
 }
 

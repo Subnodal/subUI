@@ -138,15 +138,18 @@ ul[sui-tree] details {
 }
 
 ul[sui-tree] summary {
-    padding-top: 0;
-    padding-bottom: 0;
+    display: inline-block;
+    max-width: 100%;
+    margin: -5px;
+    padding: 5px;
+    border-radius: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 ul[sui-tree] details[open] > summary {
-    padding-bottom: 0.5rem;
+    margin-bottom: 0rem; /* Removing this value collapses the margin, which is what we don't want */
 }
 
 ul[sui-tree], ul[sui-tree] ul {
@@ -155,14 +158,38 @@ ul[sui-tree], ul[sui-tree] ul {
     list-style: none;
 }
 
-ul[sui-tree] ul li {
-    margin-inline-start: 2.5rem;
-    padding-top: 0.25rem;
+ul[sui-tree] li {
+    margin-inline-start: 1.5rem;
     padding-bottom: 0.25rem;
 }
 
-ul[sui-tree] ul li details {
+ul[sui-tree] li details {
     margin-inline-start: -1.5rem;
+}
+
+ul[sui-tree] li[aria-selected="true"] > details > summary, ul[sui-tree] li[aria-selected="true"] > span {
+    background-color: var(--ui);
+    color: var(--uiText);
+}
+
+ul[sui-tree] li[aria-selected="true"] > details > summary::before {
+    background: url("media/icons/breadcrumbRight-dark.svg") center no-repeat;
+    background-size: contain;
+}
+
+ul[sui-tree] ul li {
+    margin-inline-start: 2.5rem;
+}
+
+ul[sui-tree] ul li span {
+    display: inline-block;
+    max-width: 100%;
+    margin: -5px;
+    padding: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 @media (max-width: 600px) {
