@@ -21,6 +21,13 @@ added views will automatically be subject to the attached events.
 * **`element`** (`Node`): The list node to attach the event to
 * **`callback`** (`Function`): The callback function to call when the event is triggered
 
+## ▶️ `attachTreeSelectEvent`
+`function` · Attach an event callback to a tree which triggers whenever an item in the tree is selected.
+
+**Parameters:**
+* **`element`** (`Node`): The tree node to attach the event to
+* **`callback`** (`Function`): The callback function to call when the event is triggered
+
 ## ▶️ `deselectList`
 `function` · Deselect all items from a list, triggering any event callbacks.
 
@@ -84,6 +91,30 @@ attribute contains the `"nonEmptyChoice"` token.
 
 **Returns:** `[Node]` · The currently-selected list items
 
+## ▶️ `getSelectedTreeItem`
+`function` · Get the currently-selected tree item node.
+
+**Parameters:**
+* **`element`** (`Node`): The tree node to get the selected item of
+
+**Returns:** `Node | null` · The currently-selected tree item
+
+## ▶️ `getSelectedTreeItemId`
+`function` · Get the identifier of the currently-selected tree item from a tree.
+
+**Parameters:**
+* **`element`** (`Node`): The tree node to get the selected item of
+
+**Returns:** `String | null` · The currently-selected tree item identifier
+
+## ▶️ `getSelectedTreeItemName`
+`function` · Get the name of the currently-selected tree item from a tree.
+
+**Parameters:**
+* **`element`** (`Node`): The tree node to get the selected item of
+
+**Returns:** `[String | null]` · The currently-selected tree item name
+
 ## 🔠️ `longPressDuration`
 `var <Number>` · The duration to use for detecting touch long-press events on mobile, in milliseconds.
 
@@ -103,6 +134,12 @@ if the list's `sui-mode` attribute contains the `"single"` token.
 **Parameters:**
 * **`element`** (`Node`): The item node to select
 * **`selectionMode`** (`selectionModes` = `selectionMode`): The mode to use when deciding the outcome of selection
+
+## ▶️ `selectTreeItem`
+`function` · Select an item from a tree, and present the selection to the user, triggering any event callbacks.
+
+**Parameters:**
+* **`element`** (`Node`): The item node to select
 
 ## 🔠️ `selectionMode`
 `var <selectionModes>` · The current selection mode, as determined by the current keyboard state.
