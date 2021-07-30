@@ -15,6 +15,14 @@ namespace("com.subnodal.subui.handles", function(exports) {
     var lastMouseX = null;
     var lastMouseY = null;
 
+    /*
+        @name attachEvents
+        Attach all events to all handle elements.
+            ~~~~
+            This should only be called once. It is called when subUI is
+            initialised, which is usually when the document loads. All future
+            added handles will automatically be subject to the attached events.
+    */
     exports.attachEvents = function() {
         elements.attachSelectorEvent("mousedown", "sui-handle", function(element, event) {
             currentHandle = element;
