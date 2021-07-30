@@ -550,39 +550,6 @@ details[open] > summary::before {
     transform: rotate(90deg);
 }
 
-[sui-style="tree"] details {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-[sui-style="tree"] summary {
-    padding-top: 0;
-    padding-bottom: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-details[sui-style="tree"][open] > summary, [sui-style="tree"] details[open] > summary {
-    padding-bottom: 0.5rem;
-}
-
-[sui-style="tree"] ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-[sui-style="tree"] ul li {
-    margin-inline-start: 2.5rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-}
-
-[sui-style="tree"] ul li details {
-    margin-inline-start: -1.5rem;
-}
-
 sui-icon {
     font-family: "Icons";
     font-weight: normal;

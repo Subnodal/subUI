@@ -132,6 +132,39 @@ ul[sui-iconlist][sui-style~="linear"] li {
     width: calc(100% - 4px);
 }
 
+ul[sui-tree] details {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+ul[sui-tree] summary {
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+ul[sui-tree] details[open] > summary {
+    padding-bottom: 0.5rem;
+}
+
+ul[sui-tree], ul[sui-tree] ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+ul[sui-tree] ul li {
+    margin-inline-start: 2.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+}
+
+ul[sui-tree] ul li details {
+    margin-inline-start: -1.5rem;
+}
+
 @media (max-width: 600px) {
     ul[sui-iconlist] li {
         display: block;
