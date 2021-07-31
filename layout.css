@@ -81,6 +81,18 @@ nav span:not(button span), nav ol[sui-style~="breadcrumbs"] {
     padding-bottom: 0.5rem;
 }
 
+nav a {
+    display: inline-flex;
+}
+
+nav a * {
+    margin-inline-end: 0.5rem;
+}
+
+nav a *:last-child {
+    margin-inline-end: 0;
+}
+
 nav img {
     height: 100%;
 }
