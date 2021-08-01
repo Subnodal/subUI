@@ -181,7 +181,7 @@ ul[sui-tree] ul li {
     margin-inline-start: 2.5rem;
 }
 
-ul[sui-tree] ul li span {
+ul[sui-tree] li span {
     display: inline-block;
     max-width: 100%;
     margin: -5px;
