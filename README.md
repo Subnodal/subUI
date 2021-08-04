@@ -39,7 +39,7 @@ $ python3 -m pip install csscompressor
 ```
 
 ### Distributing on Windows
-Use `py -3` instead of `python3`, since the latter is generally for UNIX
+Use `py -3` instead of `python3`, since the latter is generally for UNIX-like
 systems.
 
 ### For Subnodalers only
