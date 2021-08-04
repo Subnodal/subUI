@@ -7,7 +7,20 @@ Licenced by the [Subnodal Open-Source Licence](LICENCE.md).
     <img width="50%" src="docs/demo.png" alt="A screenshot of the subUI demo" />
 </p>
 
-## Dev environment/distribution
+## Getting subUI
+Importing subUI into your project is simple! Just add these two lines to the
+`<head>` of your HTML code:
+
+```html
+<link rel="stylesheet" href="https://cdn.subnodal.com/lib/subui/subui.min.css">
+<script src="https://cdn.subnodal.com/lib/subui/subui.min.js"></script>
+```
+
+If you want to host subUI yourself, you'll need to build subUI (see next
+section) and instead reference `subui.min.css` and `subui.min.js` in the `dist`
+folder. All of the other files in the `dist` folder are needed, too.
+
+## Building
 Ensure that you have [subPack](https://github.com/Subnodal/subPack) and
 [subDoc](https://github.com/Subnodal/subDoc) installed first. The `dist.py`
 script will then invoke subPack and subDoc when building, and will also

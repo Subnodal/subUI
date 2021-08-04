@@ -4,7 +4,8 @@ import os.path
 import shutil
 import csscompressor
 
-MAIN_CSS_FILE = "style.css"
+MAIN_CSS_IN = "style.css"
+MAIN_CSS_OUT = "subui.min.css"
 DIST_DIR = "dist"
 
 COPY_PATHS = [
@@ -20,6 +21,9 @@ def replaceImport(replacer):
 
 def minifyAndResolve(inPath):
     outPath = os.path.join(DIST_DIR, inPath.replace(".css", ".min.css"))
+
+    if inPath == MAIN_CSS_IN:
+        outPath = os.path.join(DIST_DIR, MAIN_CSS_OUT)
 
     os.makedirs(os.path.dirname(outPath), exist_ok = True)
 
@@ -46,4 +50,4 @@ for copyPath in COPY_PATHS:
     else:
         shutil.copy2(os.path.join(*copyPath[0].split("/")), pastePath)
 
-minifyAndResolve(MAIN_CSS_FILE)
+minifyAndResolve(MAIN_CSS_IN)
