@@ -3,6 +3,10 @@ A dynamic UI library for creating desktop and mobile applications.
 
 Licenced by the [Subnodal Open-Source Licence](LICENCE.md).
 
+<p align="center">
+    <img width="50%" src="docs/demo.png" alt="A screenshot of the subUI demo" />
+</p>
+
 ## Dev environment/distribution
 Ensure that you have [subPack](https://github.com/Subnodal/subPack) and
 [subDoc](https://github.com/Subnodal/subDoc) installed first. The `dist.py`
