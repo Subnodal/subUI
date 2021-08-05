@@ -17,6 +17,10 @@ html, body {
     color: var(--foreground);
 }
 
+body[hidden] {
+    display: none;
+}
+
 main, aside {
     flex-grow: 1;
     height: 100%;
