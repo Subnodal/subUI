@@ -280,6 +280,8 @@ namespace("com.subnodal.subui.menus", function(exports) {
                 (function(optionIndex) {
                     optionButton.addEventListener("click", function() {
                         element.selectedIndex = optionIndex;
+
+                        element.triggerEvent(new Event("change"));
                     });
                 })(optionIndex);
 
