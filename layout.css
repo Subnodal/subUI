@@ -387,10 +387,6 @@ sui-handle[sui-mode="vertical"]::after {
 }
 
 @media (max-width: 600px) {
-    html, body {
-        font-size: 18px;
-    }
-
     nav sui-spacer:not([sui-size~="grow"]) {
         display: none;
     }
