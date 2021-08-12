@@ -56,16 +56,16 @@ namespace("com.subnodal.subui.menus", function(exports) {
         setTimeout(function() {
             element.style.minWidth = `${minWidth}px`;
 
-            if (y + element.clientHeight + 10 > window.innerHeight) {
-                y = Math.max(y - element.clientHeight - padHeight - 10, 5);
+            if (y + element.offsetHeight + 10 > window.innerHeight) {
+                y = Math.max(y - element.offsetHeight - padHeight - 10, 5);
             }
 
-            if (document.body.getAttribute("dir") != "rtl" && x + element.clientWidth + 5 > window.innerWidth) {
-                x = Math.max(window.innerWidth - element.clientWidth - padWidth - 5, 5);
-            } else if (document.body.getAttribute("dir") == "rtl" && x - element.clientWidth - 5 < 0) {
+            if (document.body.getAttribute("dir") != "rtl" && x + element.offsetWidth + 5 > window.innerWidth) {
+                x = Math.max(window.innerWidth - element.offsetWidth - padWidth - 5, 5);
+            } else if (document.body.getAttribute("dir") == "rtl" && x - element.offsetWidth - 5 < 0) {
                 x = Math.max(padWidth + 5, 5);
             } else if (document.body.getAttribute("dir") == "rtl") {
-                x = Math.max(x - element.clientWidth, 5);
+                x = Math.max(x - element.offsetWidth, 5);
             }
 
             element.style.top = `${y}px`;
