@@ -14,6 +14,10 @@
     line-height: 1.3em;
 }
 
+*[hidden] {
+    display: none!important;
+}
+
 *[sui-stack] {
     display: flex;
     flex-basis: 0;
