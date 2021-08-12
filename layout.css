@@ -288,6 +288,11 @@ sui-workarea {
     overflow: auto;
 }
 
+sui-workarea[sui-style~="shrink"] {
+    height: unset;
+    max-height: 40vh;
+}
+
 sui-handle {
     position: relative;
     width: 0.5rem;
