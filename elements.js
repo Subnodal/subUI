@@ -61,6 +61,38 @@ namespace("com.subnodal.subui.elements", function(exports) {
         }
     };
 
+    exports.findPreviousOfTypeFromParent = function(element, selector, parent, mustBeVisible = false) {
+        var children = parent.querySelectorAll(selector);
+
+        if (mustBeVisible) {
+            children = [...children].filter(exports.isVisible);
+        }
+
+        for (var i = 0; i < children.length; i++) {
+            if (children[i].isEqualNode(element)) {
+                return children[i - 1] || null;
+            }
+        }
+
+        return null;
+    };
+
+    exports.findNextOfTypeFromParent = function(element, selector, parent, mustBeVisible = false) {
+        var children = parent.querySelectorAll(selector);
+
+        if (mustBeVisible) {
+            children = [...children].filter(exports.isVisible);
+        }
+
+        for (var i = 0; i < children.length; i++) {
+            if (children[i].isEqualNode(element)) {
+                return children[i + 1] || null;
+            }
+        }
+
+        return null;
+    };
+
     /*
         @name findNextOfType
         Find the next instance of an element before the given element which

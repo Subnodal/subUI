@@ -236,13 +236,13 @@ namespace("com.subnodal.subui.menus", function(exports) {
 
             if (event.key == "ArrowUp") {
                 (
-                    elements.findPreviousOfType(element, "button:not(:disabled)", true) ||
-                    element.parentNode.querySelector("button:not(:disabled):last-child")
+                    elements.findPreviousOfTypeFromParent(element, "button:not(:disabled)", menu, true) ||
+                    menu.querySelectorAll("button:not(:disabled)")[menu.querySelectorAll("button:not(:disabled)").length - 1]
                 ).focus();
             } else if (event.key == "ArrowDown") {
                 (
-                    elements.findNextOfType(element, "button:not(:disabled)", true) ||
-                    element.parentNode.querySelector("button:not(:disabled):first-child")
+                    elements.findNextOfTypeFromParent(element, "button:not(:disabled)", menu, true) ||
+                    menu.querySelectorAll("button:not(:disabled)")[0]
                 ).focus();
             } else if (event.key == "Tab") {
                 event.preventDefault();
