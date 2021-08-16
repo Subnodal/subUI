@@ -7,9 +7,10 @@
     Licenced by the Subnodal Open-Source Licence, which can be found at LICENCE.md.
 */
 
-html, body {
+html, body, sui-screen {
     display: flex;
     flex-direction: column;
+    width: 100vw;
     height: 100vh;
     height: -webkit-fill-available;
     margin: 0;
