@@ -38,7 +38,9 @@ def minifyAndResolve(inPath):
     unminified.close()
     minified.close()
 
-shutil.rmtree(DIST_DIR)
+if os.path.exists(DIST_DIR) and os.path.isdir(DIST_DIR):
+    shutil.rmtree(DIST_DIR)
+
 os.system("subdoc")
 os.system("subpack")
 
