@@ -9,7 +9,7 @@
 
 // @namespace com.subnodal.subui.menus
 namespace("com.subnodal.subui.menus", function(exports) {
-    var elements = require("com.subnodal.subui.elements");
+    var elements = require("com.subnodal.subelements.elements");
 
     var ignoreNextCloseEvent = false;
     var transitionTimeout = null;

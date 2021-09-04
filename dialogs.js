@@ -9,7 +9,7 @@
 
 // @namespace com.subnodal.subui.dialogs
 namespace("com.subnodal.subui.dialogs", function(exports) {
-    var elements = require("com.subnodal.subui.elements");
+    var elements = require("com.subnodal.subelements.elements");
 
     var focusStack = [];
 

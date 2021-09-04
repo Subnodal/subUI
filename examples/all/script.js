@@ -1,4 +1,5 @@
-var elements = require("com.subnodal.subui.elements");
+var elements = require("com.subnodal.subelements.elements");
+
 var views = require("com.subnodal.subui.views");
 var menus = require("com.subnodal.subui.menus");
 var dialogs = require("com.subnodal.subui.dialogs");

@@ -9,7 +9,7 @@
 
 // @namespace com.subnodal.subui.handles
 namespace("com.subnodal.subui.handles", function(exports) {
-    var elements = require("com.subnodal.subui.elements");
+    var elements = require("com.subnodal.subelements.elements");
 
     var currentHandle = null;
     var lastMouseX = null;

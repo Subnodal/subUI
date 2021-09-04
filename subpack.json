@@ -1,7 +1,6 @@
 {
     "identifier": "com.subnodal.subui",
     "modules": [
-        "elements.js",
         "hapticfeedback.js",
         "views.js",
         "menus.js",
@@ -10,6 +9,7 @@
         "subui.js"
     ],
     "dependencies": [
+        "https://cdn.subnodal.com/lib/subelements.min.js",
         "lib/dialog-polyfill.js"
     ]
 }
