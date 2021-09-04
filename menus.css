@@ -110,6 +110,10 @@ sui-menu button img {
     object-fit: contain;
 }
 
+sui-menu hr {
+    background-color: var(--menuSelectHover);
+}
+
 @supports (backdrop-filter: blur(10px)) {
     sui-menu {
         background-color: var(--menuGlass);
