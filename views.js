@@ -13,6 +13,8 @@ namespace("com.subnodal.subui.views", function(exports) {
 
     var hapticFeedback = require("com.subnodal.subui.hapticfeedback");
 
+    const TOUCH_OPEN_SCROLL_MAX_THRESHOLD = 20;
+
     var lastSelectedElement = null;
     var listSelectEvents = [];
     var listItemOpenEvents = [];
@@ -77,6 +79,15 @@ namespace("com.subnodal.subui.views", function(exports) {
     exports.setLongPressDuration = function(duration) {
         exports.longPressDuration = duration;
     };
+
+    function isEligibleForTouchOpen(item) {
+        var offset = item.getBoundingClientRect();
+
+        return (
+            Math.abs(offset.top - item.subUI_offsetTop) <= TOUCH_OPEN_SCROLL_MAX_THRESHOLD &&
+            Math.abs(offset.left - item.subUI_offsetLeft) <= TOUCH_OPEN_SCROLL_MAX_THRESHOLD
+        );
+    }
 
     /*
         @name selectListItem
@@ -449,7 +460,12 @@ namespace("com.subnodal.subui.views", function(exports) {
             exports.openListItem(element);
         });
 
-        elements.attachSelectorEvent("touchstart", "ul[sui-iconlist] li", function(element, event) {
+        elements.attachSelectorEvent("touchstart", "ul[sui-iconlist] li", function(element) {
+            var offset = element.getBoundingClientRect();
+
+            element.subUI_offsetTop = offset.top;
+            element.subUI_offsetLeft = offset.top;
+
             lastTouchTime = new Date();
 
             setTimeout(function() {
@@ -457,13 +473,19 @@ namespace("com.subnodal.subui.views", function(exports) {
                     return;
                 }
 
-                if (new Date().getTime() - lastTouchTime.getTime() >= exports.longPressDuration) {
+                if (new Date().getTime() - lastTouchTime.getTime() >= exports.longPressDuration && isEligibleForTouchOpen(element)) {
                     exports.selectListItem(element);
                 }
             }, exports.longPressDuration);
         });
 
         elements.attachSelectorEvent("touchend", "ul[sui-iconlist] li", function(element) {
+            if (!isEligibleForTouchOpen(element)) {
+                lastTouchTime = null;
+
+                return;
+            }
+
             if (new Date().getTime() - lastTouchTime.getTime() < exports.longPressDuration) {
                 exports.openListItem(element);
             }
