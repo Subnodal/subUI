@@ -464,7 +464,7 @@ namespace("com.subnodal.subui.views", function(exports) {
             var offset = element.getBoundingClientRect();
 
             element.subUI_offsetTop = offset.top;
-            element.subUI_offsetLeft = offset.top;
+            element.subUI_offsetLeft = offset.left;
 
             lastTouchTime = new Date();
 
