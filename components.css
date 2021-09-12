@@ -21,7 +21,7 @@
 *[sui-stack] {
     display: flex;
     flex-basis: 0;
-    align-items: center;
+    align-items: stretch;
 }
 
 *[sui-stack~="row"] {
@@ -38,6 +38,10 @@
 
 *[sui-stack~="column"] > * + * {
     margin-block-start: 0.5rem;
+}
+
+*[sui-stack~="stretch"] {
+    align-items: stretch;
 }
 
 *[sui-stack~="start"] {
