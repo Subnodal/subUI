@@ -60,6 +60,16 @@ namespace("com.subnodal.subui.dialogs", function(exports) {
     };
 
     /*
+        @name isOpen
+        Check whether the given dialog is open.
+        @param element <Node> The dialog node to check
+        @returns <Boolean> Whether the dialog is open
+    */
+    exports.isOpen = function(element) {
+        return element.hasAttribute("open");
+    };
+
+    /*
         @name attachEvents
         Attach all events to all dialog elements.
             ~~~~

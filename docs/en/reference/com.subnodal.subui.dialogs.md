@@ -14,6 +14,14 @@ better support for older browsers.
 **Parameters:**
 * **`element`** (`Node`): The dialog node to close
 
+## ▶️ `isOpen`
+`function` · Check whether the given dialog is open.
+
+**Parameters:**
+* **`element`** (`Node`): The dialog node to check
+
+**Returns:** `Boolean` · Whether the dialog is open
+
 ## ▶️ `open`
 `function` · Open the given dialog.
 
