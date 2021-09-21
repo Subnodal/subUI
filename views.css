@@ -43,7 +43,7 @@ ul[sui-iconlist] li img {
     -moz-user-drag: none;
 }
 
-ul[sui-iconlist] li input, ul[sui-iconlist] {
+ul[sui-iconlist] li input {
     display: block;
     width: calc(100% + 0.2rem);
     height: 1.2rem;
