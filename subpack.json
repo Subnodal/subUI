@@ -1,11 +1,13 @@
 {
     "identifier": "com.subnodal.subui",
     "modules": [
+        "platforms.js",
         "hapticfeedback.js",
         "views.js",
         "menus.js",
         "dialogs.js",
         "handles.js",
+        "shortcuts.js",
         "subui.js"
     ],
     "dependencies": [

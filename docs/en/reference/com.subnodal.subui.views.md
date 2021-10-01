@@ -7,6 +7,9 @@ This should only be called once. It is called when subUI is
 initialised, which is usually when the document loads. All future
 added views will automatically be subject to the attached events.
 
+**Parameters:**
+* **`followKeyboardShortcuts`** (`Boolean` = `true`): Whether to follow user-definable keyboard shortcuts
+
 ## ▶️ `attachListItemOpenEvent`
 `function` · Attach an event callback to a list item which fires whenever the item is opened.
 

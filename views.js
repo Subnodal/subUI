@@ -12,6 +12,7 @@ namespace("com.subnodal.subui.views", function(exports) {
     var elements = require("com.subnodal.subelements.elements");
 
     var hapticFeedback = require("com.subnodal.subui.hapticfeedback");
+    var shortcuts = require("com.subnodal.subui.shortcuts");
 
     const TOUCH_OPEN_SCROLL_MAX_THRESHOLD = 20;
 
@@ -406,8 +407,9 @@ namespace("com.subnodal.subui.views", function(exports) {
             This should only be called once. It is called when subUI is
             initialised, which is usually when the document loads. All future
             added views will automatically be subject to the attached events.
+        @param followKeyboardShortcuts <Boolean = true> Whether to follow user-definable keyboard shortcuts
     */
-    exports.attachEvents = function() {
+    exports.attachEvents = function(followKeyboardShortcuts = true) {
         window.addEventListener("keydown", function(event) {
             var list = elements.findAncestor(event.target, "ul[sui-iconlist]");
 
@@ -423,12 +425,20 @@ namespace("com.subnodal.subui.views", function(exports) {
                 return;
             }
 
-            if (event.key == "a" && event.ctrlKey) {
+            if (followKeyboardShortcuts && shortcuts.getActionFromEvent(event) == "subUI_selectAll") {
                 list.querySelectorAll("li").forEach(function(item) {
                     exports.selectListItem(item, exports.selectionModes.LINEAR);
 
                     event.target.focus();
                 });
+
+                return;
+            }
+
+            if (event.key == "Escape") {
+                exports.deselectList(list);
+
+                return;
             }
         });
 
@@ -558,7 +568,7 @@ namespace("com.subnodal.subui.views", function(exports) {
                 }
 
                 exports.selectListItem(nextItem);
-            } else if (event.key == "F2") {
+            } else if (followKeyboardShortcuts && shortcuts.getActionFromEvent(event) == "subUI_rename") {
                 var renameField = element.querySelector("input");
 
                 if (!renameField) {
@@ -567,8 +577,6 @@ namespace("com.subnodal.subui.views", function(exports) {
 
                 renameField.focus();
                 renameField.select();
-            } else if (event.key == "Escape") {
-                exports.deselectList(list);
             }
         });
 
