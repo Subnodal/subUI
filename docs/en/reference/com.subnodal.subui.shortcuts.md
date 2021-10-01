@@ -1,4 +1,4 @@
-# com.subnodal.subui.platforms
+# com.subnodal.subui.shortcuts
 ## 🔒️ `KEY_DISPLAY_NAMES`
 `const <{String}>` · A list of keyboard key display names for associated key codes.
 
