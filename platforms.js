@@ -9,6 +9,8 @@
 
 // @namespace com.subnodal.subui.platforms
 namespace("com.subnodal.subui.platforms", function(exports) {
+    // TODO: Add docs
+
     exports.osTypes = {
         OTHER: -1,
         SUBOS: 0,
@@ -85,3 +87,4 @@ namespace("com.subnodal.subui.platforms", function(exports) {
         return platform;
     };
 });
+// @endnamespace
