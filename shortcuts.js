@@ -350,3 +350,4 @@ namespace("com.subnodal.subui.shortcuts", function(exports) {
         exports.loadList();
     });
 });
+// @endnamespace

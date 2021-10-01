@@ -10,12 +10,6 @@
 * **`shortcut`** (`{*}`): The keyboard shortcut object to assign
 * **`useNormalisedForm`** (`Boolean` = `true`): Whether to allow for normalised form conversions
 
-## 🔠️ `autoInit`
-`var <Boolean>` · Whether subUI should automatically be initialised on document load.
-
-## ▶️ `cancelAutoInit`
-`function` · Cancel the automatic initialisation of subUI on document load.
-
 ## ▶️ `getActionFromEvent`
 `function` · Find the associated action for a given JavaScript event.
 
@@ -87,9 +81,6 @@ For example, on most systems, `"altKey"`.
 * **`platform`** (`{*}` = `com.subnodal.subui.platforms:getPlatform()`): The platform to render the keys of
 
 **Returns:** `Element` · The rendered element representing the keyboard shortcut
-
-## ▶️ `init`
-`function` · Initialise subUI, attaching all internal events.
 
 ## ▶️ `loadList`
 `function` · Load the list of keyboard shortcuts from local storage.
