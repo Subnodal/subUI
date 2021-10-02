@@ -367,7 +367,7 @@ namespace("com.subnodal.subui.shortcuts", function(exports) {
         }
 
         if (normalisedShortcut.altKey) {
-            addKey([platforms.osTypes.MACOS, platforms.osTypes.IOS].includes(platform.os) ? "⌥ option" : "ctrl", true);
+            addKey([platforms.osTypes.MACOS, platforms.osTypes.IOS].includes(platform.os) ? "⌥ option" : "alt", true);
         }
 
         if (normalisedShortcut.shiftKey) {
