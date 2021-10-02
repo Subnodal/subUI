@@ -17,6 +17,8 @@ namespace("com.subnodal.subui.internall10n", function(exports) {
             "done": "Done",
             "reset": "Reset",
 
+            "unknownKey": "unknown",
+
             "keyboardShortcutsDialog_title": "Keyboard shortcuts",
             "keyboardShortcutsDialog_unassigned": "Unassigned",
             "keyboardShortcutsDialog_assign": "Assign",
@@ -31,6 +33,8 @@ namespace("com.subnodal.subui.internall10n", function(exports) {
             "done": "Fini",
             "reset": "Réinitialiser",
 
+            "unknownKey": "inconnu",
+
             "keyboardShortcutsDialog_title": "Raccourcis clavier",
             "keyboardShortcutsDialog_unassigned": "Non attribué",
             "keyboardShortcutsDialog_assign": "Attribuer",
@@ -44,6 +48,8 @@ namespace("com.subnodal.subui.internall10n", function(exports) {
         "zh_CN": {
             "done": "完成",
             "reset": "重置",
+
+            "unknownKey": "未知",
 
             "keyboardShortcutsDialog_title": "键盘快捷键",
             "keyboardShortcutsDialog_unassigned": "未分配",

@@ -408,7 +408,7 @@ namespace("com.subnodal.subui.shortcuts", function(exports) {
                 break;
 
             default:
-                addKey(exports.KEY_DISPLAY_NAMES[shortcut.code]);
+                addKey(exports.KEY_DISPLAY_NAMES[shortcut.code] || internalL10n.translate("unknownKey"));
                 break;
         }
 
