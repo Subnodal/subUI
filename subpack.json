@@ -1,6 +1,7 @@
 {
     "identifier": "com.subnodal.subui",
     "modules": [
+        "internall10n.js",
         "platforms.js",
         "hapticfeedback.js",
         "views.js",

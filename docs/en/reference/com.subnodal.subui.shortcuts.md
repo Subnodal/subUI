@@ -2,6 +2,14 @@
 ## 🔒️ `KEY_DISPLAY_NAMES`
 `const <{String}>` · A list of keyboard key display names for associated key codes.
 
+## ▶️ `assignDefaultShortcut`
+`function` · Assign a default keyboard shortcut to an action.
+
+**Parameters:**
+* **`action`** (`String`): The action name to be assigned to
+* **`shortcut`** (`{*}`): The keyboard shortcut object to assign
+* **`useNormalisedForm`** (`Boolean` = `true`): Whether to allow for normalised form conversions
+
 ## ▶️ `assignShortcut`
 `function` · Assign a keyboard shortcut to an action.
 
@@ -9,6 +17,16 @@
 * **`action`** (`String`): The action name to be assigned to
 * **`shortcut`** (`{*}`): The keyboard shortcut object to assign
 * **`useNormalisedForm`** (`Boolean` = `true`): Whether to allow for normalised form conversions
+
+## ▶️ `assignSubUIDisplayNames`
+`function` · Assign the display names common to subUI's shortcuts.
+
+
+Calling this function is useful to reload the default display names
+if the locale has since been changed. It will only update the
+relevant shortcuts if they have a purpose (for example, the 'select
+all' shortcut for icon list views will not be added/updated if there
+are no `ul[sui-iconlist]` elements).
 
 ## ▶️ `getActionFromEvent`
 `function` · Find the associated action for a given JavaScript event.
@@ -25,6 +43,11 @@
 * **`shortcut`** (`{*}`): The keyboard shortcut object to get the action of
 
 **Returns:** `String | null` · The found action name, or `null` if there is no associated action
+
+## ▶️ `getDefaultList`
+`function` · Get a list of default keyboard shortcuts and their associated actions.
+
+**Returns:** `{{*}}` · An object containing action names as keys and shortcut objects as values
 
 ## ▶️ `getDisplayNames`
 `function` · Get a list of shortcut display names and their associated actions.
@@ -84,6 +107,15 @@ For example, on most systems, `"altKey"`.
 
 ## ▶️ `loadList`
 `function` · Load the list of keyboard shortcuts from local storage.
+
+## ▶️ `openShortcutsDialog`
+`function` · Open the keyboard shortcuts configuration dialog.
+
+## ▶️ `removeDefaultShortcut`
+`function` · Remove the default keyboard shortcut from an action.
+
+**Parameters:**
+* **`action`** (`String`): The action name to remove the shortcut of
 
 ## ▶️ `removeDisplayNameForAction`
 `function` · Remove the display name of an action, so that the action doesn't show in the keyboard shortcuts dialog.

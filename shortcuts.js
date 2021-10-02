@@ -9,7 +9,9 @@
 
 // @namespace com.subnodal.subui.shortcuts
 namespace("com.subnodal.subui.shortcuts", function(exports) {
+    var internalL10n = require("com.subnodal.subui.internall10n");
     var platforms = require("com.subnodal.subui.platforms");
+    var dialogs = require("com.subnodal.subui.dialogs");
 
     /*
         @name KEY_DISPLAY_NAMES
@@ -63,12 +65,24 @@ namespace("com.subnodal.subui.shortcuts", function(exports) {
         "Lang2": "hanja", "Hanja": "hanja",
     };
 
-    var list = {
+    var defaultList = {
+        subUI_openShortcutsDialog: {code: "Slash", primaryModifierKey: true},
         subUI_selectAll: {code: "KeyA", primaryModifierKey: true},
         subUI_rename: {code: "F2"}
     };
 
+    var list = {};
+
     var displayNames = {};
+
+    /*
+        @name getDefaultList
+        Get a list of default keyboard shortcuts and their associated actions.
+        @returns <{{*}}> An object containing action names as keys and shortcut objects as values
+    */
+        exports.getDefaultList = function() {
+            return defaultList;
+        };
 
     /*
         @name getList
@@ -94,7 +108,7 @@ namespace("com.subnodal.subui.shortcuts", function(exports) {
         Save the list of keyboard shortcuts to local storage.
     */
     exports.saveList = function() {
-        localStorage.setItem("subUI_shortcutsList", list);
+        localStorage.setItem("subUI_shortcutsList", JSON.stringify(list));
     };
 
     /*
@@ -198,7 +212,9 @@ namespace("com.subnodal.subui.shortcuts", function(exports) {
         @returns <String | null> The found action name, or `null` if there is no associated action
     */
     exports.getActionFromShortcut = function(shortcut) {
-        return Object.keys(list).find((key) => exports.shortcutsAreEquivalent(list[key], shortcut)) || null;
+        return Object.keys({...defaultList, ...list})
+            .find((key) => exports.shortcutsAreEquivalent({...defaultList, ...list}[key], shortcut)) || null
+        ;
     };
 
     /*
@@ -209,6 +225,27 @@ namespace("com.subnodal.subui.shortcuts", function(exports) {
     */
     exports.getActionFromEvent = function(event) {
         return exports.getActionFromShortcut(exports.getShortcutFromEvent(event));
+    };
+
+    /*
+        @name assignDefaultShortcut
+        Assign a default keyboard shortcut to an action.
+        @param action <String> The action name to be assigned to
+        @param shortcut <{*}> The keyboard shortcut object to assign
+        @param useNormalisedForm <Boolean = true> Whether to allow for normalised form conversions
+    */
+    exports.assignDefaultShortcut = function(action, shortcut, useNormalisedForm = true) {
+        var normalisedShortcut = {...shortcut};
+
+        if (useNormalisedForm) {
+            normalisedShortcut.primaryModifierKey = shortcut[exports.getPrimaryModifierKey()];
+            normalisedShortcut.secondaryModifierKey = shortcut[exports.getSecondaryModifierKey()];
+
+            delete normalisedShortcut[exports.getPrimaryModifierKey()];
+            delete normalisedShortcut[exports.getSecondaryModifierKey()];
+        }
+
+        defaultList[action] = shortcut;
     };
 
     /*
@@ -237,6 +274,15 @@ namespace("com.subnodal.subui.shortcuts", function(exports) {
     };
 
     /*
+        @name removeDefaultShortcut
+        Remove the default keyboard shortcut from an action.
+        @param action <String> The action name to remove the shortcut of
+    */
+    exports.removeShortcut = function(action) {
+        delete defaultList[action];
+    };
+
+    /*
         @name removeShortcut
         Remove the keyboard shortcut from an action.
         @param action <String> The action name to remove the shortcut of
@@ -244,7 +290,7 @@ namespace("com.subnodal.subui.shortcuts", function(exports) {
     exports.removeShortcut = function(action) {
         exports.loadList();
 
-        delete list[action];
+        list[action] = {};
 
         exports.saveList();
     };
@@ -269,15 +315,40 @@ namespace("com.subnodal.subui.shortcuts", function(exports) {
     };
 
     /*
+        @name assignSubUIDisplayNames
+        Assign the display names common to subUI's shortcuts.
+            ~~~~
+            Calling this function is useful to reload the default display names
+            if the locale has since been changed. It will only update the
+            relevant shortcuts if they have a purpose (for example, the 'select
+            all' shortcut for icon list views will not be added/updated if there
+            are no `ul[sui-iconlist]` elements).
+    */
+    exports.assignSubUIDisplayNames = function() {
+        if (document.querySelectorAll("ul[sui-iconlist]").length > 0) {
+            displayNames.subUI_selectAll = internalL10n.translate("shortcutDisplayName_selectAll");
+            displayNames.subUI_rename = internalL10n.translate("shortcutDisplayName_rename");
+        }
+
+        if (Object.keys(displayNames).length > 0) {
+            displayNames.subUI_openShortcutsDialog = internalL10n.translate("shortcutDisplayName_openShortcutsDialog");
+        }
+    };
+
+    /*
         @name getShortcutRenderedElement
         Get a visual DOM element representing a keyboard shortcut.
         @param shortcut <{*}> The keyboard shortcut to render
         @param platform <{*} = com.subnodal.subui.platforms:getPlatform()> The platform to render the keys of
         @returns <Element> The rendered element representing the keyboard shortcut
     */
-    exports.getShortcutRenderedElement = function(shortcut, platform = platforms.getPlatform()) {
+    exports.getShortcutRenderedElement = function(shortcut, platform = platforms.getPlatform(), forceSameLine = true) {
         var element = document.createElement("span");
         var normalisedShortcut = exports.getNormalisedShortcut(shortcut);
+
+        if (forceSameLine) {
+            element.setAttribute("sui-overflow", "reflow");
+        }
 
         function addKey(name, concat = false) {
             var key = document.createElement("kbd");
@@ -318,7 +389,7 @@ namespace("com.subnodal.subui.shortcuts", function(exports) {
 
             case "ControlLeft":
             case "ControlRight":
-                addKey([platforms.osTypes.MACOS, platforms.osTypes.IOS].includes(platform.os) ? "⌃ control" : "control");
+                addKey([platforms.osTypes.MACOS, platforms.osTypes.IOS].includes(platform.os) ? "⌃ control" : "ctrl");
                 break;
 
             case "AltLeft":
@@ -344,10 +415,176 @@ namespace("com.subnodal.subui.shortcuts", function(exports) {
         return element;
     };
 
-    // TODO: Allow opening of a dialog to view and change keyboard shortcuts
+    /*
+        @name openShortcutsDialog
+        Open the keyboard shortcuts configuration dialog.
+    */
+    exports.openShortcutsDialog = function() {
+        if (Object.keys(displayNames).length == 0) {
+            return;
+        }
+
+        if (
+            document.body.querySelector("dialog[sui-shortcutsconfig]") != null &&
+            dialogs.isOpen(document.body.querySelector("dialog[sui-shortcutsconfig]"))
+        ) {
+            return;
+        }
+
+        document.body.querySelectorAll("dialog[sui-shortcutsconfig]").forEach((element) => element.remove());
+
+        var dialog = document.createElement("dialog");
+
+        dialog.setAttribute("sui-shortcutsconfig", "");
+
+        var heading = document.createElement("h1");
+
+        heading.textContent = internalL10n.translate("keyboardShortcutsDialog_title");
+
+        var workArea = document.createElement("sui-workarea");
+        var table = document.createElement("table");
+        var buttonRow = document.createElement("sui-buttonrow");
+        var hiddenInput = document.createElement("input");
+
+        hiddenInput.setAttribute("tabindex", "-1");
+        hiddenInput.setAttribute("sui-a11y", "keyboardOnly");
+        hiddenInput.setAttribute("aria-label", internalL10n.translate("keyboardShortcutsDialog_waitingForShortcut"));
+
+        var actionToModify = null;
+
+        function renderShortcuts() {
+            var workAreaScrollTop = workArea.scrollTop;
+
+            table.innerHTML = "";
+
+            Object.keys(displayNames).forEach(function(action) {
+                var tableRow = document.createElement("tr");
+                var displayNameCell = document.createElement("td");
+                var shortcutCell = document.createElement("td");
+
+                displayNameCell.textContent = displayNames[action];
+
+                if (action == actionToModify) {
+                    shortcutCell.textContent = internalL10n.translate("keyboardShortcutsDialog_waitingForShortcut");
+                } else {
+                    if (Object.keys({...defaultList, ...list}[action] || {}).length > 0) {
+                        shortcutCell.append(exports.getShortcutRenderedElement({...defaultList, ...list}[action] || {}));
+                    } else {
+                        shortcutCell.append(document.createTextNode(internalL10n.translate("keyboardShortcutsDialog_unassigned")));
+                    }
+
+                    shortcutCell.append(document.createTextNode(" "));
+
+                    var assignButton = document.createElement("button");
+                    var unassignButton = document.createElement("button");
+
+                    assignButton.textContent = internalL10n.translate("keyboardShortcutsDialog_assign");
+                    unassignButton.textContent = internalL10n.translate("keyboardShortcutsDialog_unassign");
+
+                    assignButton.setAttribute("sui-a11y", "keyboardOnly showOnFocus");
+                    unassignButton.setAttribute("sui-a11y", "keyboardOnly showOnFocus");
+
+                    assignButton.addEventListener("click", function() {
+                        actionToModify = action;
+                        renderShortcuts();
+                        hiddenInput.focus();
+                    });
+
+                    unassignButton.addEventListener("click", function() {
+                        exports.assignShortcut(actionToModify, {});
+                    });
+
+                    shortcutCell.append(assignButton);
+                    shortcutCell.append(unassignButton);
+                }
+
+                shortcutCell.setAttribute("sui-align", "end");
+
+                shortcutCell.addEventListener("click", function() {
+                    if (action == actionToModify) {
+                        exports.assignShortcut(actionToModify, {}); // Unassign it
+
+                        actionToModify = null;
+                    } else {
+                        actionToModify = action;
+
+                        dialog.setAttribute("sui-mode", "nonClosable");
+                        hiddenInput.focus();
+                    }
+
+                    renderShortcuts();
+                });
+
+                tableRow.append(displayNameCell);
+                tableRow.append(shortcutCell);
+
+                table.append(tableRow);
+            });
+
+            workArea.scrollTop = workAreaScrollTop;
+        }
+
+        renderShortcuts();
+
+        hiddenInput.addEventListener("keyup", function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            dialog.removeAttribute("sui-mode");
+
+            if (actionToModify != null) {
+                exports.assignShortcut(actionToModify, exports.getShortcutFromEvent(event));
+
+                actionToModify = null;
+
+                renderShortcuts();
+            }
+        });
+
+        var doneButton = document.createElement("button");
+        var resetButton = document.createElement("button");
+
+        doneButton.textContent = internalL10n.translate("done");
+        resetButton.textContent = internalL10n.translate("reset");
+
+        doneButton.setAttribute("sui-action", "close");
+        resetButton.setAttribute("sui-style", "flat");
+
+        resetButton.addEventListener("click", function() {
+            list = {};
+
+            exports.saveList();
+            renderShortcuts();
+        });
+
+        workArea.append(table);
+
+        buttonRow.append(doneButton);
+        buttonRow.append(resetButton);
+
+        dialog.append(heading);
+        dialog.append(workArea);
+        dialog.append(hiddenInput);
+        dialog.append(buttonRow);
+
+        document.body.append(dialog);
+
+        dialogs.attachEvents();
+
+        dialogs.open(dialog);
+
+        doneButton.focus();
+    };
 
     window.addEventListener("load", function() {
         exports.loadList();
+        exports.assignSubUIDisplayNames();
+
+        window.addEventListener("keydown", function(event) {
+            if (exports.getActionFromEvent(event) == "subUI_openShortcutsDialog") {
+                exports.openShortcutsDialog();
+            }
+        });
     });
 });
 // @endnamespace

@@ -88,6 +88,21 @@
     text-align: justify;
 }
 
+*[sui-overflow="reflow"] {
+    white-space: nowrap;
+}
+
+*[sui-overflow="cutoff"] {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+*[sui-overflow="ellipsis"] {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 body:not([sui-target="web"]) * {
     cursor: default;
     user-select: none;
@@ -607,6 +622,42 @@ details[open] > summary::before {
 
 [dir="rtl"] details[open] > summary::before {
     transform: rotate(90deg);
+}
+
+table {
+    width: 100%;
+    max-width: 30rem;
+    border: none;
+    border-collapse: collapse;
+}
+
+table tr th, table tr td {
+    text-align: start;
+    padding: 0.5rem;
+}
+
+table tr th:first-child, table tr td:first-child {
+    padding-inline-start: 0;
+}
+
+table tr th:last-child, table tr td:last-child {
+    padding-inline-end: 0;
+}
+
+table tr:not(:last-child) th {
+    border-bottom: 2px solid var(--tableBorder);
+}
+
+table tr:not(:last-child) td {
+    border-bottom: 1px solid var(--tableBorder);
+}
+
+kbd {
+    background-color: var(--key);
+    padding: 0.2rem;
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+    border-radius: 5px;
 }
 
 sui-icon {

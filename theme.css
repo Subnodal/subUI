@@ -46,10 +46,15 @@
     --dialog: var(--background);
     --dialogGlass: var(--backgroundGlass);
     --dialogText: var(--foreground);
+    --dialogInput: #c9c9c9;
+    --dialogInputText: var(--uiInputText);
+    --dialogKey: var(--dialogInput);
+    --tableBorder: rgba(0, 0, 0, 0.4);
     --handle: transparent;
     --handleHover: var(--panel);
     --handleGrab: rgba(0, 0, 0, 0.4);
     --handleGrabHover: var(--handleGrab);
+    --key: var(--uiInput);
     --scrollbar: rgba(0, 0, 0, 0.5);
     --scrollbarHover: rgba(0, 0, 0, 0.6);
     --scrollbarPress: rgba(0, 0, 0, 0.8);
@@ -68,6 +73,8 @@
         --panelText: white;
         --navUiFlatHover: rgba(255, 255, 255, 0.1);
         --navUiFlatPress: rgba(255, 255, 255, 0.2);
+        --dialogInput: #363636;
+        --tableBorder: rgba(255, 255, 255, 0.4);
         --handleGrab: rgba(255, 255, 255, 0.4);
         --scrollbar: rgba(255, 255, 255, 0.5);
         --scrollbarHover: rgba(255, 255, 255, 0.6);

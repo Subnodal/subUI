@@ -81,6 +81,16 @@ namespace("com.subnodal.subui.dialogs", function(exports) {
     exports.attachEvents = function() {
         document.querySelectorAll("dialog").forEach(function(element) {
             dialogPolyfill.registerDialog(element);
+
+            element.addEventListener("cancel", function(event) {
+                event.preventDefault();
+            });
+        });
+
+        elements.attachSelectorEvent("keydown", "dialog", function(element, event) {
+            if (event.code == "Escape" && element.getAttribute("sui-mode") != "nonClosable") {
+                exports.close(element);
+            }
         });
 
         elements.attachSelectorEvent("click", "dialog button[sui-action='close']", function(element) {

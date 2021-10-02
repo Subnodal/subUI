@@ -55,6 +55,14 @@ dialog h1:first-child {
     margin-block-start: 0;
 }
 
+dialog input {
+    background-color: var(--dialogInput);
+}
+
+dialog kbd {
+    background-color: var(--dialogKey);
+}
+
 @supports (backdrop-filter: blur(10px)) {
     dialog {
         background-color: var(--dialogGlass);
