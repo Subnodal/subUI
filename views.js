@@ -344,8 +344,6 @@ namespace("com.subnodal.subui.views", function(exports) {
     exports.selectTreeItem = function(element) {
         var tree = elements.findAncestor(element, "ul[sui-tree]");
 
-        console.log(element);
-
         tree.querySelectorAll("li").forEach(function(item) {
             item.removeAttribute("aria-selected");
         });
