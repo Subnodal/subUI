@@ -292,6 +292,7 @@ sui-workarea[sui-style~="shrink"] {
 
 sui-handle {
     position: relative;
+    flex-shrink: 0;
     width: 0.5rem;
     margin-block-start: 0.5rem;
     margin-block-end: 0.5rem;
