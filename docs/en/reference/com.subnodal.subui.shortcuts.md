@@ -33,6 +33,7 @@ are no `ul[sui-iconlist]` elements).
 
 **Parameters:**
 * **`event`** (`Event`): The JavaScript event to get the action of
+* **`cancelOnInput`** (`Boolean` = `true`): Whether to not provide an action when the user is focused in an input
 
 **Returns:** `String | null` · The found action name, or `null` if there is no associated action
 
@@ -93,6 +94,7 @@ For example, on most systems, `"altKey"`.
 
 **Parameters:**
 * **`event`** (`Event`): The JavaScript event to convert
+* **`cancelOnInput`** (`Boolean` = `true`): Whether to not provide a shortcut when the user is focused in an input
 
 **Returns:** `{*}` · The converted keyboard shortcut object
 

@@ -193,9 +193,14 @@ namespace("com.subnodal.subui.shortcuts", function(exports) {
         @name getShortcutFromEvent
         Get a keyboard shortcut object from a given JavaScript event.
         @param event <Event> The JavaScript event to convert
+        @param cancelOnInput <Boolean = true> Whether to not provide a shortcut when the user is focused in an input
         @returns <{*}> The converted keyboard shortcut object
     */
-    exports.getShortcutFromEvent = function(event) {
+    exports.getShortcutFromEvent = function(event, cancelOnInput = true) {
+        if (cancelOnInput && document.activeElement?.matches("input")) {
+            return {};
+        }
+
         return {
             code: event.code,
             ctrlKey: event.ctrlKey,
@@ -221,10 +226,11 @@ namespace("com.subnodal.subui.shortcuts", function(exports) {
         @name getActionFromEvent
         Find the associated action for a given JavaScript event.
         @param event <Event> The JavaScript event to get the action of
+        @param cancelOnInput <Boolean = true> Whether to not provide an action when the user is focused in an input
         @returns <String | null> The found action name, or `null` if there is no associated action
     */
-    exports.getActionFromEvent = function(event) {
-        return exports.getActionFromShortcut(exports.getShortcutFromEvent(event));
+    exports.getActionFromEvent = function(event, cancelOnInput = true) {
+        return exports.getActionFromShortcut(exports.getShortcutFromEvent(event, cancelOnInput));
     };
 
     /*
@@ -533,7 +539,7 @@ namespace("com.subnodal.subui.shortcuts", function(exports) {
             dialog.removeAttribute("sui-mode");
 
             if (actionToModify != null) {
-                exports.assignShortcut(actionToModify, exports.getShortcutFromEvent(event));
+                exports.assignShortcut(actionToModify, exports.getShortcutFromEvent(event, false));
 
                 actionToModify = null;
 
