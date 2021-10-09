@@ -8,6 +8,7 @@
 */
 
 [sui-a11y~="keyboardOnly"]:not([sui-a11y~="showOnFocus"]:focus) {
+    display: block;
     width: 0;
     height: 0;
     margin: 0;
