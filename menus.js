@@ -233,7 +233,7 @@ namespace("com.subnodal.subui.menus", function(exports) {
 
         elements.attachSelectorEvent("keydown", "sui-menu button", function(element, event) {
             var menu = elements.findAncestor(element, "sui-menu");
-            var menuButtons = menu.querySelectorAll("button:not(:disabled)");
+            var menuButtons = [...menu.querySelectorAll("button:not(:disabled)")].filter((buttonElement) => elements.isVisible(buttonElement));
 
             if (event.key == "ArrowUp") {
                 (
