@@ -16,18 +16,6 @@ namespace("com.subnodal.subui.menus", function(exports) {
     var lastMouseX = 0;
     var lastMouseY = 0;
 
-    function menuButtonIsFocusable(element) {
-        if (!elements.isVisible(element)) {
-            return false;
-        }
-
-        if (element.disabled) {
-            return false;
-        }
-
-        return true;
-    }
-
     /*
         @name openMenuAtPosition
         Open the given menu at the specified pixel coordinates. The menu may
@@ -63,7 +51,7 @@ namespace("com.subnodal.subui.menus", function(exports) {
         element.setAttribute("aria-label", focusNodeClone.textContent.trim());
 
         element.setAttribute("sui-open", "fadeIn");
-        element.querySelectorAll("button").filter(menuButtonIsFocusable)[0]?.focus();
+        [...element.querySelectorAll("button:not(:disabled)")].filter((buttonElement) => elements.isVisible(buttonElement))[0]?.focus();
 
         setTimeout(function() {
             element.style.minWidth = `${minWidth}px`;
@@ -245,16 +233,16 @@ namespace("com.subnodal.subui.menus", function(exports) {
 
         elements.attachSelectorEvent("keydown", "sui-menu button", function(element, event) {
             var menu = elements.findAncestor(element, "sui-menu");
-            var menuButtons = menu.querySelectorAll("button").filter(menuButtonIsFocusable);
+            var menuButtons = menu.querySelectorAll("button:not(:disabled)");
 
             if (event.key == "ArrowUp") {
                 (
-                    elements.findPreviousOfTypeFromParent(element, "button", menu, true) ||
+                    elements.findPreviousOfTypeFromParent(element, "button:not(:disabled)", menu, true) ||
                     menuButtons[menuButtons.length - 1]
                 ).focus();
             } else if (event.key == "ArrowDown") {
                 (
-                    elements.findNextOfTypeFromParent(element, "button", menu, true) ||
+                    elements.findNextOfTypeFromParent(element, "button:not(:disabled)", menu, true) ||
                     menuButtons[0]
                 ).focus();
             } else if (event.key == "Tab") {
