@@ -240,11 +240,15 @@ namespace("com.subnodal.subui.menus", function(exports) {
                     elements.findPreviousOfTypeFromParent(element, "button:not(:disabled)", menu, true) ||
                     menuButtons[menuButtons.length - 1]
                 ).focus();
+
+                event.preventDefault();
             } else if (event.key == "ArrowDown") {
                 (
                     elements.findNextOfTypeFromParent(element, "button:not(:disabled)", menu, true) ||
                     menuButtons[0]
                 ).focus();
+
+                event.preventDefault();
             } else if (event.key == "Tab") {
                 event.preventDefault();
             } else if (event.key == "Space" || event.key == "Enter") {

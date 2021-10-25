@@ -537,6 +537,8 @@ namespace("com.subnodal.subui.views", function(exports) {
             } else if (event.key == "ArrowUp") {
                 var itemsAbove = [...list.querySelectorAll("li")].filter((item) => item.offsetTop < element.offsetTop && item.offsetLeft == element.offsetLeft);
 
+                event.preventDefault();
+
                 if (itemsAbove.length == 0) {
                     return;
                 }
@@ -544,6 +546,8 @@ namespace("com.subnodal.subui.views", function(exports) {
                 exports.selectListItem(itemsAbove[itemsAbove.length - 1]);
             } else if (event.key == "ArrowDown") {
                 var itemsBelow = [...list.querySelectorAll("li")].filter((item) => item.offsetTop > element.offsetTop && item.offsetLeft == element.offsetLeft);
+
+                event.preventDefault();
 
                 if (itemsBelow.length == 0) {
                     return;
