@@ -3,6 +3,7 @@ var elements = require("com.subnodal.subelements.elements");
 var views = require("com.subnodal.subui.views");
 var menus = require("com.subnodal.subui.menus");
 var dialogs = require("com.subnodal.subui.dialogs");
+var splash = require("com.subnodal.subui.splash");
 
 function selectAll() {
     document.querySelectorAll("ul[sui-iconlist] li").forEach((element) => element.setAttribute("aria-selected", true));
@@ -44,4 +45,8 @@ window.addEventListener("load", function() {
     document.querySelector("#exampleSlider").addEventListener("change", function(event) {
         document.querySelector("#exampleProgress").value = event.target.value / 100;
     });
+
+    setTimeout(function() {
+        splash.finish();
+    }, 3_000);
 });

@@ -9,6 +9,7 @@
         "dialogs.js",
         "handles.js",
         "shortcuts.js",
+        "splash.js",
         "subui.js"
     ],
     "dependencies": [

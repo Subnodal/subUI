@@ -13,6 +13,7 @@ namespace("com.subnodal.subui", function(exports) {
     var menus = require("com.subnodal.subui.menus");
     var dialogs = require("com.subnodal.subui.dialogs");
     var handles = require("com.subnodal.subui.handles");
+    var splash = require("com.subnodal.subui.splash");
 
     /*
         @name autoInit
@@ -38,6 +39,7 @@ namespace("com.subnodal.subui", function(exports) {
         menus.attachEvents();
         dialogs.attachEvents();
         handles.attachEvents();
+        splash.attachEvents();
     };
 
     window.addEventListener("load", function() {
