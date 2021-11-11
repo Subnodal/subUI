@@ -39,3 +39,4 @@ namespace("com.subnodal.subui.splash", function(exports) {
         });
     };
 });
+// @endnamespace
